@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175534214238360862, guid: 3b389d17ac12ef64eb606696d82b9ec8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -409.8
+      value: -474
       objectReference: {fileID: 0}
     - target: {fileID: 4175534214238360862, guid: 3b389d17ac12ef64eb606696d82b9ec8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7243754057718669586, guid: 17c2131d519a17246802d51f107e725c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 354
+      value: 377
       objectReference: {fileID: 0}
     - target: {fileID: 7243754057718669586, guid: 17c2131d519a17246802d51f107e725c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -763,11 +763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2956687948735259795, guid: 3ef6f70b00910b2489c0fdaee36331bb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 804
+      value: 836
       objectReference: {fileID: 0}
     - target: {fileID: 2956687948735259795, guid: 3ef6f70b00910b2489c0fdaee36331bb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 359
+      value: 434
       objectReference: {fileID: 0}
     - target: {fileID: 2956687948735259795, guid: 3ef6f70b00910b2489c0fdaee36331bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1280,6 +1280,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 907520676281874595}
+    - target: {fileID: 5382094059051342333, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965526298575413918, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8916210087492736684, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
