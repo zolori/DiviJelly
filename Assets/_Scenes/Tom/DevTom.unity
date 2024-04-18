@@ -385,10 +385,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5050844128859526545, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5886533811548989220, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -16,10 +16,11 @@ public class JellyEntity : MonoBehaviour
 
 	private float m_CurrentVolume = 1f;
 
-	[SerializeField] private float m_Acceleration = 1f;
-	[SerializeField] private float m_MaxSpeed = 1f;
-	[SerializeField] private float m_AirMultiplier = 1f;
-	[SerializeField] private float m_JumpForce = 1f;
+	[SerializeField] private float m_Acceleration = 30f;
+	[SerializeField] private float m_MaxSpeed = 2f;
+	[SerializeField] private float m_DragForce = 1f;
+	[SerializeField] private float m_AirMultiplier = 0.3f;
+	[SerializeField] private float m_JumpForce = 8f;
 
 	private float m_MovementInputValue = 0;
 	private bool m_HasRequestedJump = false;
@@ -32,11 +33,6 @@ public class JellyEntity : MonoBehaviour
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_Collider2D = GetComponent<BoxCollider2D>();
 		m_LocalFootHeight = m_Collider2D.offset.y - m_Collider2D.size.y * 0.5f;
-		GameObject footDebug = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		footDebug.transform.parent = transform;
-		footDebug.transform.localScale = Vector3.one * 0.1f;
-		footDebug.transform.localPosition = Vector3.up * m_LocalFootHeight;
-		Debug.Log(m_LocalFootHeight);
 	}
 
 	private void Start()
@@ -52,15 +48,14 @@ public class JellyEntity : MonoBehaviour
 
 		bool isGrounded = _IsGrounded();
 
-		Vector2 movement = Vector2.right * m_MovementInputValue * m_Acceleration;
+		float xVelocity = m_Rigidbody2D.velocity.x;
 
-		if(!isGrounded)
-			movement *= m_AirMultiplier;
+		float accelerationForce = m_MovementInputValue * m_Acceleration;
+		if(Mathf.Abs(xVelocity) >= m_MaxSpeed && xVelocity * m_MovementInputValue > 0)
+			accelerationForce = 0;
+		float dragForce = (Mathf.Abs(xVelocity) * xVelocity + xVelocity) * -m_DragForce;
 
-		if(Mathf.Abs(m_Rigidbody2D.velocity.x) >= m_MaxSpeed)
-			movement = Vector2.zero;
-
-		m_Rigidbody2D.AddForce(movement, ForceMode2D.Force);
+		m_Rigidbody2D.AddForce(Vector2.right * ((accelerationForce + dragForce) * (isGrounded ? 1 : m_AirMultiplier)), ForceMode2D.Force);
 
 		if(m_HasRequestedJump)
 		{
@@ -78,6 +73,11 @@ public class JellyEntity : MonoBehaviour
 	public void SetCanMove(bool iCanMove)
 	{
 		m_CanMove = iCanMove;
+
+		if(m_CanMove)
+			m_Rigidbody2D.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+		else
+			m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;
 	}
 
 	public void SetFlavour(Flavour iFlavour)
