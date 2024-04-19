@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de03dd71f921ff42ab7ba20065a73a4, type: 3}
+  m_Name: w1l3
+  m_EditorClassIdentifier: 
+  _name: map test
+  _world: 1
+  _level: 3
+  _score: 0
+  _starCount: 0
+  _currLevelScene: {fileID: 102900000, guid: 85ec92478c4a9ad4dbf7d9249a413171, type: 3}
+  _nextLevelData: {fileID: 0}
