@@ -10,11 +10,10 @@ public class JellyEntity : MonoBehaviour
 	private BoxCollider2D m_Collider2D;
 	private float m_LocalFootHeight = 0;
 	[SerializeField] private SpriteRenderer m_SpriteRenderer;
+	[SerializeField] private Animator m_Animator;
 
 	[SerializeField] private Flavours m_Flavours;
 	private FlavourData m_CurrentFlavour;
-
-	private float m_CurrentVolume = 1f;
 
 	[SerializeField] private float m_Acceleration = 30f;
 	[SerializeField] private float m_MaxSpeed = 2f;
@@ -22,23 +21,31 @@ public class JellyEntity : MonoBehaviour
 	[SerializeField] private float m_AirMultiplier = 0.3f;
 	[SerializeField] private float m_JumpForce = 8f;
 
+	private bool m_CanMove = false;
 	private float m_MovementInputValue = 0;
 	private bool m_HasRequestedJump = false;
 	private HashSet<GameObject> m_Grounds = new HashSet<GameObject>();
 
-	private bool m_CanMove = false;
+	private float m_CurrentVolume = 1f;
+	[SerializeField] private float s_MinimalVolume = 0.1f;
+	[SerializeField] private float s_SplitHalfSpace = 0.05f;
+
+	private JelliesManager m_JellysManager;
+	private JelliesController m_JelliesController;
 
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_Collider2D = GetComponent<BoxCollider2D>();
 		m_LocalFootHeight = m_Collider2D.offset.y - m_Collider2D.size.y * 0.5f;
+		m_JellysManager = JelliesManager.Instance;
+		m_JelliesController = FindFirstObjectByType<JelliesController>();
 	}
 
 	private void Start()
 	{
-		SetFlavour(Flavour.Strawberry);
-		SetCanMove(true);
+		SetFlavour(m_CurrentFlavour.Flavour);
+		SetVolume(m_CurrentVolume);
 	}
 
 	private void FixedUpdate()
@@ -55,13 +62,13 @@ public class JellyEntity : MonoBehaviour
 			accelerationForce = 0;
 		float dragForce = (Mathf.Abs(xVelocity) * xVelocity + xVelocity) * -m_DragForce;
 
-		m_Rigidbody2D.AddForce(Vector2.right * ((accelerationForce + dragForce) * (isGrounded ? 1 : m_AirMultiplier)), ForceMode2D.Force);
+		m_Rigidbody2D.AddForce(Vector2.right * ((accelerationForce + dragForce) * m_CurrentVolume * (isGrounded ? 1 : m_AirMultiplier)), ForceMode2D.Force);
 
 		if(m_HasRequestedJump)
 		{
 			m_HasRequestedJump = false;
 			if(isGrounded)
-				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce, ForceMode2D.Impulse);
+				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_CurrentVolume, ForceMode2D.Impulse);
 		}
 	}
 
@@ -82,12 +89,14 @@ public class JellyEntity : MonoBehaviour
 
 	public void SetFlavour(Flavour iFlavour)
 	{
-		JellysManager.Instance.UnregisterJelly(this);
+		m_JellysManager.UnregisterJelly(this);
 		m_CurrentFlavour = m_Flavours.Data.Find(flavourData => flavourData.Flavour == iFlavour);
-		JellysManager.Instance.RegisterJelly(this);
+		m_JellysManager.RegisterJelly(this);
+		SetCanMove(m_JelliesController.GetCurrentControlledFlavour() == GetFlavour());
 
 		gameObject.layer = m_CurrentFlavour.Layer;
 		m_SpriteRenderer.sprite = m_CurrentFlavour.Sprite;
+		m_SpriteRenderer.color = m_CurrentFlavour.Color;
 	}
 
 	public Flavour GetFlavour()
@@ -101,7 +110,43 @@ public class JellyEntity : MonoBehaviour
 		float volumeToScale = Mathf.Pow(m_CurrentVolume, 0.33333f);
 		transform.localScale = Vector3.one * volumeToScale;
 
-		// TODO: change animation speed
+		m_Rigidbody2D.mass = m_CurrentVolume;
+
+		m_Animator.SetFloat("AnimationSpeed", Mathf.Lerp(1, 2, Mathf.InverseLerp(1, s_MinimalVolume, m_CurrentVolume)));
+	}
+
+	public Rect GetBBox()
+	{
+		return new Rect((Vector2)transform.position + m_Collider2D.offset * transform.localScale, m_Collider2D.size * transform.localScale);
+	}
+
+	[Button]
+	public void Divide()
+	{
+		if(m_CurrentVolume <= s_MinimalVolume * 2)
+			return;
+
+		SetVolume(m_CurrentVolume * 0.5f);
+		SetFlavour(GetFlavour());
+		GameObject newJellyObject = Instantiate(gameObject, transform.parent);
+		JellyEntity newJellyEntity = newJellyObject.GetComponent<JellyEntity>();
+		newJellyEntity.SetVolume(m_CurrentVolume);
+
+		Vector3 offset = (m_Collider2D.size.x * transform.localScale.x * 0.5f * s_SplitHalfSpace) * Vector3.right;
+		transform.position -= offset;
+		newJellyEntity.transform.position += offset;
+	}
+
+	public void Merge(JellyEntity iOther)
+	{
+		if(iOther.GetFlavour() != GetFlavour())
+			return;
+
+		float prevVolume = m_CurrentVolume;
+		SetVolume(m_CurrentVolume + iOther.m_CurrentVolume);
+		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_CurrentVolume);
+
+		Destroy(iOther.gameObject);
 	}
 
 	public void Jump()
@@ -141,9 +186,26 @@ public class JellyEntity : MonoBehaviour
 			m_Grounds.Add(iCollision.gameObject);
 	}
 
+	private void OnCollisionStay2D(Collision2D iCollision)
+	{
+		JellyEntity otherJelly;
+		if(!iCollision.gameObject.TryGetComponent(out otherJelly))
+			return;
+		if(otherJelly.GetFlavour() != GetFlavour())
+			return;
+
+		if(otherJelly.GetHashCode() < GetHashCode())
+			Merge(otherJelly);
+	}
+
 	private void OnCollisionExit2D(Collision2D iCollision)
 	{
 		m_Grounds.Remove(iCollision.gameObject);
+	}
+
+	private void OnDestroy()
+	{
+		m_JellysManager?.UnregisterJelly(this);
 	}
 
 	/////////////////////////////

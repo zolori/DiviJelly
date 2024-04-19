@@ -14,17 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
   - Flavour: 0
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    Sprite: {fileID: 21300000, guid: 7cf0a0ac803b8a6478dc7b8c80913c4b, type: 3}
+    Color: {r: 1, g: 1, b: 1, a: 1}
     Layer: 6
   - Flavour: 1
     Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    Color: {r: 1, g: 0.59762466, b: 0, a: 1}
     Layer: 7
   - Flavour: 2
     Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    Color: {r: 0.9992268, g: 1, b: 0, a: 1}
     Layer: 8
   - Flavour: 3
     Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    Color: {r: 0.60015, g: 1, b: 0, a: 1}
     Layer: 9
   - Flavour: 4
     Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    Color: {r: 0, g: 0.31725788, b: 1, a: 1}
     Layer: 10
