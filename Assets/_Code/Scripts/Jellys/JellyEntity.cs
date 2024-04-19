@@ -117,7 +117,8 @@ public class JellyEntity : MonoBehaviour
 
 	public Rect GetBBox()
 	{
-		return new Rect((Vector2)transform.position + m_Collider2D.offset * transform.localScale, m_Collider2D.size * transform.localScale);
+		return new Rect((Vector2)transform.position + (m_Collider2D.offset - m_Collider2D.size * 0.5f) * transform.localScale,
+			m_Collider2D.size * transform.localScale);
 	}
 
 	[Button]
