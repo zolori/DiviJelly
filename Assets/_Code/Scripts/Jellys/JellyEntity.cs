@@ -44,7 +44,7 @@ public class JellyEntity : MonoBehaviour
 
 	private void Start()
 	{
-		SetFlavour(m_CurrentFlavour.Flavour);
+		_UpdateFlavour(m_CurrentFlavour.Flavour);
 		SetVolume(m_CurrentVolume);
 	}
 
@@ -68,7 +68,10 @@ public class JellyEntity : MonoBehaviour
 		{
 			m_HasRequestedJump = false;
 			if(isGrounded)
+			{
+				m_Rigidbody2D.velocity = Vector2.right * m_Rigidbody2D.velocity.x; // canceling vertical momentum
 				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_CurrentVolume, ForceMode2D.Impulse);
+			}
 		}
 	}
 
@@ -88,6 +91,14 @@ public class JellyEntity : MonoBehaviour
 	}
 
 	public void SetFlavour(Flavour iFlavour)
+	{
+		if(iFlavour == GetFlavour())
+			return;
+
+		_UpdateFlavour(iFlavour);
+	}
+
+	private void _UpdateFlavour(Flavour iFlavour)
 	{
 		m_JellysManager.UnregisterJelly(this);
 		m_CurrentFlavour = m_Flavours.Data.Find(flavourData => flavourData.Flavour == iFlavour);
@@ -115,6 +126,11 @@ public class JellyEntity : MonoBehaviour
 		m_Animator.SetFloat("AnimationSpeed", Mathf.Lerp(1, 2, Mathf.InverseLerp(1, s_MinimalVolume, m_CurrentVolume)));
 	}
 
+	public float GetVolume()
+	{
+		return m_CurrentVolume;
+	}
+
 	public Rect GetBBox()
 	{
 		return new Rect((Vector2)transform.position + (m_Collider2D.offset - m_Collider2D.size * 0.5f) * transform.localScale,
@@ -122,25 +138,32 @@ public class JellyEntity : MonoBehaviour
 	}
 
 	[Button]
-	public void Divide()
+	public bool Split()
 	{
 		if(m_CurrentVolume <= s_MinimalVolume * 2)
-			return;
+			return false;
 
 		SetVolume(m_CurrentVolume * 0.5f);
-		SetFlavour(GetFlavour());
 		GameObject newJellyObject = Instantiate(gameObject, transform.parent);
 		JellyEntity newJellyEntity = newJellyObject.GetComponent<JellyEntity>();
+		newJellyEntity.SetFlavour(GetFlavour());
 		newJellyEntity.SetVolume(m_CurrentVolume);
+		newJellyEntity.SetMovementInputValue(m_MovementInputValue);
+		Rigidbody2D newJellyRb = newJellyObject.GetComponent<Rigidbody2D>();
+		newJellyRb.velocity = m_Rigidbody2D.velocity;
 
 		Vector3 offset = (m_Collider2D.size.x * transform.localScale.x * 0.5f * s_SplitHalfSpace) * Vector3.right;
 		transform.position -= offset;
 		newJellyEntity.transform.position += offset;
+
+		return true;
 	}
 
 	public void Merge(JellyEntity iOther)
 	{
 		if(iOther.GetFlavour() != GetFlavour())
+			return;
+		if(iOther == this)
 			return;
 
 		float prevVolume = m_CurrentVolume;
