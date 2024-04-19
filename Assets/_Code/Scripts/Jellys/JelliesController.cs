@@ -86,23 +86,28 @@ public class JelliesController : MonoBehaviour
 
 	private void _UpdateControlledFlavour()
 	{
-		if(m_FlavoursCount == 0)
+		if(m_FlavoursCount <= 0)
 		{
 			Debug.LogWarning("No jelly flavour registered");
 			return;
 		}
 
-		foreach(JellyEntity jelly in _GetControlledJellies())
-		{
-			jelly.SetCanMove(false);
-			jelly.SetMovementInputValue(0);
-		}
+		_UpdateHUD();
+
+		List<JellyEntity> prevJellies = _GetControlledJellies();
+		Flavour prevFlavour = GetCurrentControlledFlavour();
 
 		m_ControlledFlavourIndex = FixFlavourIndex(m_ControlledFlavourIndex);
 		m_ControlledFlavour = GetFlavourData(m_ControlledFlavourIndex);
 
-		_UpdateHUD();
+		if(GetCurrentControlledFlavour() == prevFlavour)
+			return;
 
+		foreach(JellyEntity jelly in prevJellies)
+		{
+			jelly.SetCanMove(false);
+			jelly.SetMovementInputValue(0);
+		}
 		foreach(JellyEntity jelly in _GetControlledJellies())
 		{
 			jelly.SetCanMove(true);

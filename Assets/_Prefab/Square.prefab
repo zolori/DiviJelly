@@ -181,7 +181,7 @@ MonoBehaviour:
   m_AirMultiplier: 0.05
   m_JumpForce: 7
   s_MinimalVolume: 0.063
-  s_SplitHalfSpace: 1.1
+  s_SplitHalfSpace: 1.25
 --- !u!95 &6397890851804299554
 Animator:
   serializedVersion: 5
