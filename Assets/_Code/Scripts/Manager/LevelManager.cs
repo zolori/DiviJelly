@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     private string _nextLevelScenePath;
 
 
-    public void InitAndLaunchLevels(LevelData level)
+    public void InitAndLaunchLevel(LevelData level)
     {
         SetCurrentLevel(level);
         SetNextLevel(level._nextLevelData);
@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
 
     public void OpenNextLevel()
     {
+        InitAndLaunchLevel(_nextLevel);
+
         if (_nextLevel != null)
         {
             if (_nextLevelScenePath != null)
