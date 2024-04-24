@@ -26,7 +26,7 @@ public class Singleton<T> : MonoBehaviour
 		}
 	}
 
-	public virtual void Awake()
+	protected virtual void Awake()
 	{
 		if(s_Instance == null)
 			s_Instance = this as T;
