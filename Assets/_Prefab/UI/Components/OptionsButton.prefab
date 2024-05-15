@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4859154285572428011}
   - component: {fileID: 513358761781973726}
   - component: {fileID: 6085752543674623516}
+  - component: {fileID: 619083755261369983}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -220,3 +221,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &619083755261369983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855336148745444286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9f795765aa0bd4dbe27e42b01749d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sound: {fileID: 8300000, guid: 0a7e4dabac36ad346abe4a53c6a1ef41, type: 3}

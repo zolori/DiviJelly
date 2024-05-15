@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 7547088463404073266}
   - component: {fileID: 7234506213224828834}
   - component: {fileID: 1728920888102956787}
+  - component: {fileID: 7318761437735679837}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -175,6 +176,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7318761437735679837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705048757916662387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9f795765aa0bd4dbe27e42b01749d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sound: {fileID: 8300000, guid: 0a7e4dabac36ad346abe4a53c6a1ef41, type: 3}
 --- !u!1 &5218270611459329411
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +201,7 @@ GameObject:
   - component: {fileID: 24002268657833599}
   - component: {fileID: 8528607965158655728}
   - component: {fileID: 7745898991234883429}
+  - component: {fileID: 6973463239461965454}
   m_Layer: 5
   m_Name: RebindButton
   m_TagString: Untagged
@@ -296,6 +311,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6973463239461965454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218270611459329411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9f795765aa0bd4dbe27e42b01749d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sound: {fileID: 8300000, guid: 0a7e4dabac36ad346abe4a53c6a1ef41, type: 3}
 --- !u!1 &6978810734221218578
 GameObject:
   m_ObjectHideFlags: 0
