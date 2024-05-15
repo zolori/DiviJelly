@@ -17,5 +17,5 @@ MonoBehaviour:
   _level: 3
   _score: 0
   _starCount: 0
-  _currLevelScene: {fileID: 102900000, guid: 85ec92478c4a9ad4dbf7d9249a413171, type: 3}
+  _currLevelScene: {fileID: 102900000, guid: 71a1608497bcabc46bddf1c1beeeabd1, type: 3}
   _nextLevelData: {fileID: 0}
