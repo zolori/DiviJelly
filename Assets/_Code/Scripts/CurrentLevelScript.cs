@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndLevelScript : MonoBehaviour
+public class CurrentLevelScript : MonoBehaviour
 {
     [SerializeField] private GameObject endScreen;
 

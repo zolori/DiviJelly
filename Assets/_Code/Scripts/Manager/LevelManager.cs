@@ -4,13 +4,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
     private LevelData _currLevel;
     private LevelData _nextLevel;
     private string _currLevelScenePath;
     private string _nextLevelScenePath;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if (Instance != this)
+            return;
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void InitAndLaunchLevel(LevelData level)
     {
@@ -44,12 +52,12 @@ public class LevelManager : MonoBehaviour
     public void SetCurrentLevel(LevelData level)
     {
         _currLevel = level;
-        _currLevelScenePath = AssetDatabase.GetAssetPath(_currLevel._currLevelScene); ;
+        _currLevelScenePath = AssetDatabase.GetAssetPath(_currLevel._currLevelScene);
     }
 
     public void SetNextLevel(LevelData level)
     {
-        if(level != null)
+        if (level != null)
         {
             _nextLevel = level;
             _nextLevelScenePath = AssetDatabase.GetAssetPath(_nextLevel._currLevelScene);
