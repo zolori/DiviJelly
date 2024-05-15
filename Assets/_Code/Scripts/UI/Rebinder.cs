@@ -22,6 +22,7 @@ public class Rebinder : MonoBehaviour
 		m_RebindButton.onClick.AddListener(Rebind);
 		m_RemoveBindindButton.onClick.AddListener(RemoveBinding);
 		SetInputAction(InputMaster.Instance.InputAction.FindAction(m_ActionName));
+		InputMaster.Instance.OnDeviceChange += Refresh;
 	}
 
 	public void SetInputAction(InputAction iInputAction)

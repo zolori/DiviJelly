@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class JelliesController : MonoBehaviour
 {
@@ -11,18 +11,28 @@ public class JelliesController : MonoBehaviour
 	private int m_ControlledFlavourIndex = 0;
 
 	[SerializeField] private Flavours m_Flavours;
-	[SerializeField] private SpriteRenderer m_HUDControlledFlavour;
-	[SerializeField] private SpriteRenderer m_HUDNextControlledFlavour;
-	[SerializeField] private SpriteRenderer m_HUDPrevControlledFlavour;
+	[SerializeField] private Image m_HUDControlledFlavour;
+	[SerializeField] private Image m_HUDNextControlledFlavour;
+	[SerializeField] private Image m_HUDPrevControlledFlavour;
 
 	private JelliesManager m_JelliesManager;
+	private InputMaster m_InputMaster;
 
 	private float m_MovementInputValueCache = 0;
 
 	private void Awake()
 	{
 		m_JelliesManager = JelliesManager.Instance;
+		m_InputMaster = InputMaster.Instance;
 		m_JelliesManager.OnAvailableFlavourChange += UpdateAvailableFlavours;
+		m_InputMaster.InputAction.Enable();
+
+		m_InputMaster.InputAction.Jellys.HorizontalMovement.performed += (ctx) => OnHorizontalMovement(ctx.ReadValue<float>());
+		m_InputMaster.InputAction.Jellys.HorizontalMovement.canceled += (ctx) => OnHorizontalMovement(ctx.ReadValue<float>());
+		m_InputMaster.InputAction.Jellys.Jump.performed += (ctx) => OnJump();
+		m_InputMaster.InputAction.Jellys.PrevFlavour.performed += (ctx) => OnPrevFlavour();
+		m_InputMaster.InputAction.Jellys.NextFlavour.performed += (ctx) => OnNextFlavour();
+		m_InputMaster.InputAction.Jellys.Interact.performed += (ctx) => OnInteract();
 	}
 
 	public Flavour GetCurrentControlledFlavour()
@@ -53,14 +63,12 @@ public class JelliesController : MonoBehaviour
 		_UpdateHUDSpriteWithFlavour(m_HUDPrevControlledFlavour, GetFlavourData(FixFlavourIndex(m_ControlledFlavourIndex - 1)));
 	}
 
-	static private void _UpdateHUDSpriteWithFlavour(SpriteRenderer iSpriteRenderer, FlavourData iFlavourData)
+	static private void _UpdateHUDSpriteWithFlavour(Image iRenderer, FlavourData iFlavourData)
 	{
-		if(iSpriteRenderer == null)
+		if(iRenderer == null)
 			return;
 
-		iSpriteRenderer.sprite = iFlavourData.Sprite;
-		iSpriteRenderer.color = iFlavourData.Color;
-		iSpriteRenderer.sprite = iFlavourData.Sprite;
+		iRenderer.sprite = iFlavourData.HUDSprite;
 	}
 
 	public void UpdateAvailableFlavours()
@@ -127,10 +135,10 @@ public class JelliesController : MonoBehaviour
 		_UpdateControlledFlavour();
 	}
 
-	public void OnHorizontalMovement(InputValue iInputValue)
+	public void OnHorizontalMovement(float iInputValue)
 	{
 		List<JellyEntity> jellies = _GetControlledJellies();
-		m_MovementInputValueCache = iInputValue.Get<float>();
+		m_MovementInputValueCache = iInputValue;
 		foreach(JellyEntity jelly in jellies)
 			jelly.SetMovementInputValue(m_MovementInputValueCache);
 	}
@@ -140,5 +148,10 @@ public class JelliesController : MonoBehaviour
 		List<JellyEntity> jellies = _GetControlledJellies();
 		foreach(JellyEntity jelly in jellies)
 			jelly.Jump();
+	}
+
+	public void OnInteract()
+	{
+		// TODO
 	}
 }

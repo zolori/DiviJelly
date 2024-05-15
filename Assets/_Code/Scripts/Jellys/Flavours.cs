@@ -18,6 +18,7 @@ public struct FlavourData
 	public Flavour Flavour;
 	public Sprite Sprite;
 	public Color Color;
+	public Sprite HUDSprite;
 	public int Layer;
 }
 

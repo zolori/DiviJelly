@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,7 +12,9 @@ public class InputMaster : Singleton<InputMaster>
 		get => inputAction;
 	}
 
-	private static string s_InputBindingPlayerPrefKey = "inputBindings";
+	public Action OnDeviceChange;
+
+	private const string s_InputBindingPlayerPrefKey = "inputBindings";
 
 	protected override void Awake()
 	{
@@ -25,6 +28,8 @@ public class InputMaster : Singleton<InputMaster>
 		inputAction.LoadBindingOverridesFromJson(overrideJson);
 
 		inputAction.Enable();
+
+		InputSystem.onDeviceChange += (_, __) => OnDeviceChange?.Invoke();
 	}
 
 	private void OnEnable()
