@@ -100,13 +100,13 @@ public class JelliesController : MonoBehaviour
 			return;
 		}
 
-		_UpdateHUD();
-
 		List<JellyEntity> prevJellies = _GetControlledJellies();
 		Flavour prevFlavour = GetCurrentControlledFlavour();
 
 		m_ControlledFlavourIndex = FixFlavourIndex(m_ControlledFlavourIndex);
 		m_ControlledFlavour = GetFlavourData(m_ControlledFlavourIndex);
+
+		_UpdateHUD();
 
 		if(GetCurrentControlledFlavour() == prevFlavour)
 			return;

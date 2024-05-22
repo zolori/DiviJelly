@@ -28,7 +28,7 @@ public class JellyEntity : MonoBehaviour
 
 	private float m_CurrentVolume = 1f;
 	[SerializeField] private float s_MinimalVolume = 0.1f;
-	[SerializeField] private float s_SplitHalfSpace = 0.05f;
+	[SerializeField] private float s_SplitHalfSpace = 1.5f;
 
 	private JelliesManager m_JellysManager;
 	private JelliesController m_JelliesController;
@@ -83,11 +83,11 @@ public class JellyEntity : MonoBehaviour
 	public void SetCanMove(bool iCanMove)
 	{
 		m_CanMove = iCanMove;
-
+/*
 		if(m_CanMove)
 			m_Rigidbody2D.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
 		else
-			m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;
+			m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;*/
 	}
 
 	public void SetFlavour(Flavour iFlavour)
@@ -216,6 +216,8 @@ public class JellyEntity : MonoBehaviour
 		if(!iCollision.gameObject.TryGetComponent(out otherJelly))
 			return;
 		if(otherJelly.GetFlavour() != GetFlavour())
+			return;
+		if(Mathf.Abs(otherJelly.transform.position.y - transform.position.y) > 0.01)
 			return;
 
 		if(otherJelly.GetHashCode() < GetHashCode())

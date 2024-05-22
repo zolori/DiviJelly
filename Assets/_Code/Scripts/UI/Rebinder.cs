@@ -22,7 +22,7 @@ public class Rebinder : MonoBehaviour
 		m_RebindButton.onClick.AddListener(Rebind);
 		m_RemoveBindindButton.onClick.AddListener(RemoveBinding);
 		SetInputAction(InputMaster.Instance.InputAction.FindAction(m_ActionName));
-		InputMaster.Instance.OnDeviceChange += Refresh;
+		InputMaster.Instance.OnControlSchemeChanged += Refresh;
 	}
 
 	public void SetInputAction(InputAction iInputAction)
@@ -77,7 +77,9 @@ public class Rebinder : MonoBehaviour
 				m_Operation = null;
 				m_Action.Enable();
 				m_IsRebinding = false;
+				InputMaster.Instance.OnRebind?.Invoke();
 				Refresh();
+
 			})
 			.OnCancel(operation =>
 			{
@@ -95,6 +97,7 @@ public class Rebinder : MonoBehaviour
 			return;
 
 		m_Action.RemoveBindingOverride(m_BindingIndex);
+		InputMaster.Instance.OnRebind?.Invoke();
 		Refresh();
 	}
 
