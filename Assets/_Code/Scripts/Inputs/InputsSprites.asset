@@ -12,5 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72f3ebb48de0764b8f791bd49c97c87, type: 3}
   m_Name: InputsSprites
   m_EditorClassIdentifier: 
-  DefaultInputImg: {fileID: 0}
-  InputsImages: []
+  DefaultInputImg: {fileID: 21300000, guid: 0d96d00e25adee548ac7f38d5706b6ee, type: 3}
+  InputsImages:
+  - Img: {fileID: 21300000, guid: 8ba61953ed0af43489bfd10f2ccb5d57, type: 3}
+    Inputs:
+    - Left Stick/Down [Gamepad]
+    - Left Stick/Up [Gamepad]
+    - Left Stick/Right [Gamepad]
+    - Left Stick/Left [Gamepad]
+  - Img: {fileID: 21300000, guid: 8662f767d2d7f6d4cb9ee664aa50fb14, type: 3}
+    Inputs:
+    - Space [Keyboard]
+  - Img: {fileID: 21300000, guid: 2c865c984f0fba44bb2b61e35ec60d50, type: 3}
+    Inputs:
+    - Left Shoulder [Gamepad]
+  - Img: {fileID: 21300000, guid: 2c919bd019231bf408e6172671cf90f6, type: 3}
+    Inputs:
+    - Right Shoulder [Gamepad]
+  - Img: {fileID: 21300000, guid: bc1913f83a8e80d468a5537ead7b45e2, type: 3}
+    Inputs:
+    - Right Trigger [Gamepad]
+  - Img: {fileID: 21300000, guid: f22737cdaecd1a94e916db9076cb4476, type: 3}
+    Inputs:
+    - Left Trigger [Gamepad]
+  - Img: {fileID: 21300000, guid: dd44a3f4a58b0dc4db1dd2a0f200648d, type: 3}
+    Inputs:
+    - Start [Gamepad]
+  - Img: {fileID: 21300000, guid: e2b28a16c62584c4b933e925c5d1d336, type: 3}
+    Inputs:
+    - Button South [Gamepad]
+    - Button North [Gamepad]
+    - Button East [Gamepad]
+    - Button West [Gamepad]
+  - Img: {fileID: 21300000, guid: 1be914a0c1b52b84fb5fff97b1648595, type: 3}
+    Inputs:
+    - D-Pad/Up [Gamepad]
+    - D-Pad/Down[Gamepad]
+    - D-Pad/Right [Gamepad]
+    - D-Pad/Left [Gamepad]

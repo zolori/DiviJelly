@@ -554,7 +554,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f65bbaebbbbdb414ebb2b6d849df792f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8662f767d2d7f6d4cb9ee664aa50fb14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -803,8 +803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5721f57be6dfbe7458b32060c844ae4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ActionName: HorizontalMovement
+  m_InputsSprites: {fileID: 11400000, guid: 91d1cf28e0fa53c44a123489c35f82ba, type: 2}
+  m_ActionName: Jump
   m_TextDisplay: {fileID: 568353478}
+  m_ImgDisplay: {fileID: 273149581}
 --- !u!114 &568353478
 MonoBehaviour:
   m_ObjectHideFlags: 0
