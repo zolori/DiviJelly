@@ -29,9 +29,8 @@ public class InputDisplayer : MonoBehaviour
 		InputBinding bindingMask = InputBinding.MaskByGroup(m_InputMaster.ControlScheme.bindingGroup);
 		m_TextDisplay.text = inputAction.GetBindingDisplayString(bindingMask);
 
-		string keyName = inputAction.GetBindingDisplayString(bindingMask, InputBinding.DisplayStringOptions.DontOmitDevice);
-		Debug.Log(keyName);
-		m_ImgDisplay.sprite = _FindInputSprite(keyName);
+		int bindingIdx = inputAction.GetBindingIndex(bindingMask);
+		m_ImgDisplay.sprite = _FindInputSprite(inputAction.bindings[bindingIdx].effectivePath);
 	}
 
 	private Sprite _FindInputSprite(string iKeyName)
