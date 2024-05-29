@@ -35,6 +35,7 @@ public class InputDisplayer : MonoBehaviour
 
 	private Sprite _FindInputSprite(string iKeyName)
 	{
+		Debug.Log(iKeyName);
 		foreach(InputsSprites.ImageInputsPair inputsSprite in m_InputsSprites.InputsImages)
 		{
 			if(inputsSprite.Inputs.Contains(iKeyName))
