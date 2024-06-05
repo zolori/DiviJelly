@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 654902376}
   - component: {fileID: 654902375}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: LeverArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1666,6 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04044bfac14c549439e16a458113b82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingPiece: {fileID: 1197714948}
 --- !u!1 &655777682
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,7 +3238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026447185}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3889,8 +3890,9 @@ GameObject:
   - component: {fileID: 1197714951}
   - component: {fileID: 1197714950}
   - component: {fileID: 1197714949}
+  - component: {fileID: 1197714952}
   m_Layer: 0
-  m_Name: mur1 (4)
+  m_Name: movingWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4008,6 +4010,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1197714952
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197714948}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 909ad40c22308ab4f9ab237a265f3a67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1216146970
 GameObject:
   m_ObjectHideFlags: 0
@@ -6924,6 +6947,7 @@ SceneRoots:
   - {fileID: 712159278}
   - {fileID: 1319647446}
   - {fileID: 1772797435}
+  - {fileID: 1197714951}
   - {fileID: 1026447185}
   - {fileID: 1178673032}
   - {fileID: 696248125}
@@ -6931,7 +6955,6 @@ SceneRoots:
   - {fileID: 929510877}
   - {fileID: 1414870546}
   - {fileID: 153876136}
-  - {fileID: 1197714951}
   - {fileID: 171116136}
   - {fileID: 1102114180}
   - {fileID: 1407059681}

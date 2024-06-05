@@ -7,6 +7,9 @@ public class LeverAnim : MonoBehaviour
     private Animator _animator;
     private InputMaster m_InputMaster;
 
+    public GameObject movingPiece;
+    private Animator _movingPieceAnimator;
+
     private bool _collided;
 
     private void Awake()
@@ -19,6 +22,7 @@ public class LeverAnim : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _movingPieceAnimator = movingPiece.GetComponent<Animator>();
     }
 
     public void OnInteract()
@@ -30,6 +34,8 @@ public class LeverAnim : MonoBehaviour
 
         _animator.SetTrigger(leverState ? "trLeft" : "trRight");
         _animator.SetBool("bLever", !leverState);
+
+        _movingPieceAnimator.SetTrigger("trOperate");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
