@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,7 +11,7 @@ public class JellyEntity : MonoBehaviour
 	private BoxCollider2D m_Collider2D;
 	private float m_LocalFootHeight = 0;
 	[SerializeField] private SpriteRenderer m_SpriteRenderer;
-	[SerializeField] private Animator m_Animator;
+	// [SerializeField] private Animator m_Animator;
 
 	[SerializeField] private Flavours m_Flavours;
 	private FlavourData m_CurrentFlavour;
@@ -30,8 +31,18 @@ public class JellyEntity : MonoBehaviour
 	[SerializeField] private float s_MinimalVolume = 0.1f;
 	[SerializeField] private float s_SplitHalfSpace = 1.5f;
 
+	[SerializeField] private GameObject m_JellyPrefab;
+
 	private JelliesManager m_JellysManager;
 	private JelliesController m_JelliesController;
+
+	// some schenanigan to counter weird animation positioning when splitting and merging
+	// fuck unity
+	private bool m_ResetPhysics = false;
+	private bool m_EnableAnimPhysics = true;
+	private List<Rigidbody2D> m_AnimRigidbody2Ds = new List<Rigidbody2D>();
+	private List<FixedJoint2D> m_AnimPhysicsGlue = new List<FixedJoint2D>();
+	private List<Vector3> m_AnimRigidbody2DsPos = new List<Vector3>();
 
 	private void Awake()
 	{
@@ -40,6 +51,43 @@ public class JellyEntity : MonoBehaviour
 		m_LocalFootHeight = m_Collider2D.offset.y - m_Collider2D.size.y * 0.5f;
 		m_JellysManager = JelliesManager.Instance;
 		m_JelliesController = FindFirstObjectByType<JelliesController>();
+
+		FindAnimComponents();
+		if(m_AnimRigidbody2DsPos.Count == 0)
+			InitAnimPos();
+		else
+			m_ResetPhysics = true;
+	}
+
+	private void FindAnimComponents()
+	{
+		GetComponentsInChildren(m_AnimRigidbody2Ds);
+		m_AnimRigidbody2Ds.Remove(GetComponent<Rigidbody2D>());
+		GetComponentsInChildren(m_AnimPhysicsGlue);
+	}
+
+	private void InitAnimPos()
+	{
+		foreach(Rigidbody2D rb in m_AnimRigidbody2Ds)
+			m_AnimRigidbody2DsPos.Add(rb.transform.localPosition);
+	}
+
+	private void SetAnimPos(List<Vector3> iPos)
+	{
+		for(int rbIdx = 0; rbIdx < m_AnimRigidbody2Ds.Count; rbIdx++)
+		{
+			Rigidbody2D rb = m_AnimRigidbody2Ds[rbIdx];
+			rb.transform.localPosition = iPos[rbIdx];
+			rb.position = rb.transform.position;
+			rb.transform.localRotation = Quaternion.identity;
+			rb.rotation = 0;
+			rb.velocity = Vector2.zero;
+			rb.angularVelocity = 0;
+		}
+		m_MovementInputValue = 0;
+		foreach(FixedJoint2D joint in m_AnimPhysicsGlue)
+			joint.enabled = true;
+		m_EnableAnimPhysics = true;
 	}
 
 	private void Start()
@@ -48,10 +96,38 @@ public class JellyEntity : MonoBehaviour
 		SetVolume(m_CurrentVolume);
 	}
 
+	[Button]
+	public void FixPhysics()
+	{
+		m_ResetPhysics = true;
+	}
+
+	[Button]
+	public void EnablePhysics()
+	{
+		m_EnableAnimPhysics = true;
+	}
+
 	private void FixedUpdate()
 	{
 		if(!m_CanMove)
 			return;
+
+		if(m_ResetPhysics)
+		{
+			m_ResetPhysics = false;
+			m_Rigidbody2D.velocity = Vector3.zero;
+			m_Rigidbody2D.position = transform.position;
+			SetAnimPos(m_AnimRigidbody2DsPos);
+			return;
+		}
+		if(m_EnableAnimPhysics)
+		{
+			m_EnableAnimPhysics = false;
+			foreach(FixedJoint2D joint in m_AnimPhysicsGlue)
+				joint.enabled = false;
+			return;
+		}
 
 		bool isGrounded = _IsGrounded();
 
@@ -83,11 +159,16 @@ public class JellyEntity : MonoBehaviour
 	public void SetCanMove(bool iCanMove)
 	{
 		m_CanMove = iCanMove;
-/*
-		if(m_CanMove)
-			m_Rigidbody2D.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-		else
-			m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;*/
+		/*
+				if(m_CanMove)
+					m_Rigidbody2D.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+				else
+					m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;*/
+	}
+
+	public bool CanMove()
+	{
+		return m_CanMove;
 	}
 
 	public void SetFlavour(Flavour iFlavour)
@@ -106,7 +187,7 @@ public class JellyEntity : MonoBehaviour
 		SetCanMove(m_JelliesController.GetCurrentControlledFlavour() == GetFlavour());
 
 		gameObject.layer = m_CurrentFlavour.Layer;
-		m_SpriteRenderer.sprite = m_CurrentFlavour.Sprite;
+		// m_SpriteRenderer.sprite = m_CurrentFlavour.Sprite;
 		m_SpriteRenderer.color = m_CurrentFlavour.Color;
 	}
 
@@ -123,7 +204,7 @@ public class JellyEntity : MonoBehaviour
 
 		m_Rigidbody2D.mass = m_CurrentVolume;
 
-		m_Animator.SetFloat("AnimationSpeed", Mathf.Lerp(1, 2, Mathf.InverseLerp(1, s_MinimalVolume, m_CurrentVolume)));
+		// m_Animator.SetFloat("AnimationSpeed", Mathf.Lerp(1, 2, Mathf.InverseLerp(1, s_MinimalVolume, m_CurrentVolume)));
 	}
 
 	public float GetVolume()
@@ -144,17 +225,19 @@ public class JellyEntity : MonoBehaviour
 			return false;
 
 		SetVolume(m_CurrentVolume * 0.5f);
-		GameObject newJellyObject = Instantiate(gameObject, transform.parent);
+		GameObject newJellyObject = Instantiate(m_JellyPrefab, transform.position, transform.rotation, transform.parent);
 		JellyEntity newJellyEntity = newJellyObject.GetComponent<JellyEntity>();
 		newJellyEntity.SetFlavour(GetFlavour());
 		newJellyEntity.SetVolume(m_CurrentVolume);
 		newJellyEntity.SetMovementInputValue(m_MovementInputValue);
-		Rigidbody2D newJellyRb = newJellyObject.GetComponent<Rigidbody2D>();
-		newJellyRb.velocity = m_Rigidbody2D.velocity;
 
 		Vector3 offset = (m_Collider2D.size.x * transform.localScale.x * 0.5f * s_SplitHalfSpace) * Vector3.right;
 		transform.position -= offset;
 		newJellyEntity.transform.position += offset;
+
+		m_ResetPhysics = true;
+		newJellyEntity.m_AnimRigidbody2DsPos = m_AnimRigidbody2DsPos;
+		newJellyEntity.m_ResetPhysics = true;
 
 		return true;
 	}
@@ -169,6 +252,7 @@ public class JellyEntity : MonoBehaviour
 		float prevVolume = m_CurrentVolume;
 		SetVolume(m_CurrentVolume + iOther.m_CurrentVolume);
 		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_CurrentVolume);
+		m_ResetPhysics = true;
 
 		Destroy(iOther.gameObject);
 	}

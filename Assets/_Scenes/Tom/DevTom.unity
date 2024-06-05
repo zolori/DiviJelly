@@ -791,10 +791,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -843,15 +843,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71bfdea0e335d435da2fcc889bee8fc1, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5622641, g: 0.5336204, b: 0.5336204, a: 0.8352941}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &684503278
@@ -1208,10 +1208,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1260,15 +1260,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71bfdea0e335d435da2fcc889bee8fc1, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.8117647, g: 0.5606553, b: 0.1764706, a: 0.8352941}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &772205379
@@ -2614,9 +2614,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1781881387}
     m_Modifications:
+    - target: {fileID: 250172084665358164, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185021
+      objectReference: {fileID: 0}
+    - target: {fileID: 558277072064722276, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185037
+      objectReference: {fileID: 0}
+    - target: {fileID: 719885795721366846, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.12100029
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061919864209361656, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185037
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263409738152077557, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2090987086696141771, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945612991646651080, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0050001144
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006082200941767284, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.12100005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167548331615339742, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.12100029
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207859039655087414, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.12100005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145660283086598180, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0050001144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237217765564085260, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.22600007
+      objectReference: {fileID: 0}
     - target: {fileID: 5050844128859526545, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
       propertyPath: m_Name
       value: Square
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199114279123814084, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0050001144
       objectReference: {fileID: 0}
     - target: {fileID: 5886533811548989220, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2657,6 +2709,42 @@ PrefabInstance:
     - target: {fileID: 5886533811548989220, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373830952533485367, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.21600008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581243489908825623, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.21600008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860518946685661660, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.21600008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048364158910621946, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.22600007
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478308501515493674, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.22600007
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968019978526733632, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0050001144
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969965948270149946, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_Distance
+      value: 0.21185029
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520947316015866061, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.21600008
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541475653977030481, guid: 10d01a54252bfb24baa19dd5ff50b6cd, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.22600007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
