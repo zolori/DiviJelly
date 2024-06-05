@@ -31,11 +31,15 @@ public class AudioManager : Singleton<AudioManager>
 		AudioMixerGroup musicMixerGroup = GetMixerGroup(m_Mixer, s_MusicKey);
 		AudioMixerGroup sfxMixerGroup = GetMixerGroup(m_Mixer, s_SFXKey);
 
+		m_MusicSpeaker = CreateSpeaker(musicMixerGroup);
+		m_SFXSpeaker = CreateSpeaker(sfxMixerGroup);
+	}
+
+	private void Start()
+	{
 		SetMusicVolume(PlayerPrefs.GetFloat(s_MusicVolumeKey, 0.5f));
 		SetSFXVolume(PlayerPrefs.GetFloat(s_SFXVolumeKey, 0.5f));
 
-		m_MusicSpeaker = CreateSpeaker(musicMixerGroup);
-		m_SFXSpeaker = CreateSpeaker(sfxMixerGroup);
 	}
 
 	protected override void OnDestroy()
@@ -77,12 +81,14 @@ public class AudioManager : Singleton<AudioManager>
 
 	private float ToDb(float iNormedVolume)
 	{
-		return Mathf.Lerp(s_MinDb, s_MaxDb, iNormedVolume);
+		float tmp = Mathf.Lerp(s_MinDb, s_MaxDb, iNormedVolume);
+		return tmp;
 	}
 
 	private float FromDb(float iDbVolume)
 	{
-		return Mathf.InverseLerp(s_MinDb, s_MaxDb, iDbVolume);
+		float tmp = Mathf.InverseLerp(s_MinDb, s_MaxDb, iDbVolume);
+		return tmp;
 	}
 
 	private void SetVolume(string iVolumeKey, float iVolume)

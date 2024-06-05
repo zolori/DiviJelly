@@ -96,18 +96,6 @@ public class JellyEntity : MonoBehaviour
 		SetVolume(m_CurrentVolume);
 	}
 
-	[Button]
-	public void FixPhysics()
-	{
-		m_ResetPhysics = true;
-	}
-
-	[Button]
-	public void EnablePhysics()
-	{
-		m_EnableAnimPhysics = true;
-	}
-
 	private void FixedUpdate()
 	{
 		if(!m_CanMove)
@@ -301,7 +289,7 @@ public class JellyEntity : MonoBehaviour
 			return;
 		if(otherJelly.GetFlavour() != GetFlavour())
 			return;
-		if(Mathf.Abs(otherJelly.transform.position.y - transform.position.y) > 0.01)
+		if(!_IsGrounded() || !otherJelly._IsGrounded())
 			return;
 
 		if(otherJelly.GetHashCode() < GetHashCode())
