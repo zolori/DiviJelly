@@ -10,7 +10,6 @@ public class LevelMenuBehavior : MonoBehaviour
     public List<Button> buttons;
     private int _lastCompletedLevel;
 
-    // Start is called before the first frame update
     void Start()
     {
         _levelManagerInstance = LevelManager.Instance;
