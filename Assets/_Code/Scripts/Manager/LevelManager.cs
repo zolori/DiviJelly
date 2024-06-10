@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -10,6 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     private LevelData _nextLevel;
     private string _currLevelScenePath;
     private string _nextLevelScenePath;
+    public int lastCompletedLevel;
 
     protected override void Awake()
     {
@@ -18,6 +20,8 @@ public class LevelManager : Singleton<LevelManager>
             return;
 
         DontDestroyOnLoad(gameObject);
+
+        lastCompletedLevel = 0;
     }
 
     public void InitAndLaunchLevel(LevelData level)
@@ -27,6 +31,7 @@ public class LevelManager : Singleton<LevelManager>
 
         OpenLevel(level);
     }
+
     public void OpenLevel(LevelData levelData)
     {
         SceneManager.LoadScene(_currLevelScenePath);
@@ -34,6 +39,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OpenNextLevel()
     {
+        lastCompletedLevel++;
+
         InitAndLaunchLevel(_nextLevel);
 
         if (_nextLevel != null)
