@@ -31,9 +31,5 @@ public class Flavourer : MonoBehaviour
 	private void UpdateFlavour()
 	{
 		m_Renderer.color = m_Flavours.GetData(m_Flavour).Color;
-
-		/*Color color = m_Flavours.GetData(m_Flavour).Color;
-		color.a = m_Renderer.color.a;
-		m_Renderer.color = color;*/
 	}
 }

@@ -43,6 +43,12 @@ public class JellyEntity : MonoBehaviour
 	private List<FixedJoint2D> m_AnimPhysicsGlue = new List<FixedJoint2D>();
 	private List<Vector3> m_AnimRigidbody2DsPos = new List<Vector3>();
 
+	[SerializeField] private AudioSource m_SfxPlayer;
+	[SerializeField] private AudioClip m_JumpSound;
+	[SerializeField] private AudioClip m_MergeSound;
+	[SerializeField] private AudioClip m_SplitSound;
+	[SerializeField] private AudioClip m_BounceSound;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -134,6 +140,7 @@ public class JellyEntity : MonoBehaviour
 			{
 				m_Rigidbody2D.velocity = Vector2.right * m_Rigidbody2D.velocity.x; // canceling vertical momentum
 				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_CurrentVolume, ForceMode2D.Impulse);
+				m_SfxPlayer.PlayOneShot(m_JumpSound);
 			}
 		}
 	}
@@ -189,8 +196,6 @@ public class JellyEntity : MonoBehaviour
 		transform.localScale = Vector3.one * volumeToScale;
 
 		m_Rigidbody2D.mass = m_CurrentVolume;
-
-		// m_Animator.SetFloat("AnimationSpeed", Mathf.Lerp(1, 2, Mathf.InverseLerp(1, s_MinimalVolume, m_CurrentVolume)));
 	}
 
 	public float GetVolume()
@@ -224,6 +229,7 @@ public class JellyEntity : MonoBehaviour
 		m_ResetPhysics = true;
 		newJellyEntity.m_AnimRigidbody2DsPos = m_AnimRigidbody2DsPos;
 		newJellyEntity.m_ResetPhysics = true;
+		m_SfxPlayer.PlayOneShot(m_SplitSound);
 
 		return true;
 	}
@@ -239,6 +245,7 @@ public class JellyEntity : MonoBehaviour
 		SetVolume(m_CurrentVolume + iOther.m_CurrentVolume);
 		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_CurrentVolume);
 		m_ResetPhysics = true;
+		m_SfxPlayer.PlayOneShot(m_MergeSound);
 
 		Destroy(iOther.gameObject);
 	}
@@ -276,6 +283,7 @@ public class JellyEntity : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D iCollision)
 	{
+		m_SfxPlayer.PlayOneShot(m_BounceSound);
 		if(_IsGroundCollision(iCollision))
 			m_Grounds.Add(iCollision.gameObject);
 	}
@@ -313,10 +321,24 @@ public class JellyEntity : MonoBehaviour
 	{
 		SetFlavour(Flavour.Strawberry);
 	}
-
 	[Button]
 	public void SetOrange()
 	{
 		SetFlavour(Flavour.Orange);
+	}
+	[Button]
+	public void SetLemon()
+	{
+		SetFlavour(Flavour.Lemon);
+	}
+	[Button]
+	public void SetApple()
+	{
+		SetFlavour(Flavour.Apple);
+	}
+	[Button]
+	public void SetBlueberry()
+	{
+		SetFlavour(Flavour.Blueberry);
 	}
 }

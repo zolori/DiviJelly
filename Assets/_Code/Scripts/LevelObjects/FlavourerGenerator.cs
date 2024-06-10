@@ -18,12 +18,7 @@ public class FlavourerGenerator : MonoBehaviour
 		StartCoroutine(GenerateFlavourers());
 		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
 		if(renderer != null)
-		{
 			renderer.color = m_Flavours.GetData(m_Flavour).Color;
-			/*Color color = m_Flavours.GetData(m_Flavour).Color;
-			color.a = renderer.color.a;
-			renderer.color = color;*/
-		}
 	}
 
 	private IEnumerator GenerateFlavourers()

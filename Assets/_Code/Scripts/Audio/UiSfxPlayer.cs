@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SFXPlayer : MonoBehaviour
+public class UiSfxPlayer : MonoBehaviour
 {
 	[SerializeField] private AudioClip m_Sound;
 	private AudioManager m_AudioManager;
