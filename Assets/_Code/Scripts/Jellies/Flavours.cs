@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum Flavour
@@ -16,7 +17,6 @@ public enum Flavour
 public struct FlavourData
 {
 	public Flavour Flavour;
-	public Sprite Sprite;
 	public Color Color;
 	public Sprite HUDSprite;
 	public int Layer;
@@ -26,4 +26,9 @@ public struct FlavourData
 public class Flavours : ScriptableObject
 {
 	public List<FlavourData> Data;
+
+	public FlavourData GetData(Flavour iFlavour)
+	{
+		return Data.First(data => data.Flavour == iFlavour);
+	}
 }

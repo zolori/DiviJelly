@@ -14,27 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
   - Flavour: 0
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-    Color: {r: 1, g: 0, b: 0, a: 1}
+    Color: {r: 1, g: 0, b: 0, a: 0.8745098}
     HUDSprite: {fileID: 21300000, guid: e25e07e86923446908583c44b16fc2da, type: 3}
     Layer: 6
   - Flavour: 1
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-    Color: {r: 1, g: 0.47008726, b: 0, a: 1}
+    Color: {r: 1, g: 0.59762466, b: 0, a: 0.8745098}
     HUDSprite: {fileID: 21300000, guid: e4f855e6a2f774ec882b4298f77fb105, type: 3}
     Layer: 7
   - Flavour: 2
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-    Color: {r: 0.9992268, g: 1, b: 0, a: 1}
+    Color: {r: 0.9992268, g: 1, b: 0, a: 0.7490196}
     HUDSprite: {fileID: 21300000, guid: 97e185885cbb441a19ae88cc4da895e0, type: 3}
     Layer: 8
   - Flavour: 3
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-    Color: {r: 0.33774376, g: 1, b: 0, a: 1}
+    Color: {r: 0.60015, g: 1, b: 0, a: 0.7490196}
     HUDSprite: {fileID: 21300000, guid: 10ca326c155804027945a8fe6398207c, type: 3}
     Layer: 9
   - Flavour: 4
-    Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-    Color: {r: 0, g: 0.31725788, b: 1, a: 1}
+    Color: {r: 0, g: 0.31725788, b: 1, a: 0.7490196}
     HUDSprite: {fileID: 21300000, guid: 866f7aa4ad57345fc80e27cdd788f832, type: 3}
     Layer: 10

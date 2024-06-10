@@ -6,9 +6,13 @@ public class LimitedLifetime : MonoBehaviour
 {
 	[SerializeField] private float m_Lifetime;
 
-	// Start is called before the first frame update
 	private void Start()
 	{
 		Destroy(gameObject, m_Lifetime);
+	}
+
+	private void OnCollisionEnter2D(Collision2D iCollision)
+	{
+		Destroy(gameObject);
 	}
 }

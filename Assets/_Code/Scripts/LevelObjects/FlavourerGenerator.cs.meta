@@ -3,7 +3,9 @@ guid: 0c9471a1061f602409d2ddb0fd15fe4b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_FlavourerPrefab: {fileID: 53968066818588848, guid: 1bc80471a3f86684cbe96cbc67ef3450, type: 3}
+  - m_Flavours: {fileID: 11400000, guid: 460225b6d81d94e40ba9328082e8491c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

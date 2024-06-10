@@ -89,7 +89,7 @@ public class JelliesController : MonoBehaviour
 	private FlavourData GetFlavourData(int iFlavourIndex)
 	{
 		Flavour flavour = m_JelliesManager.m_Flavours[iFlavourIndex];
-		return m_Flavours.Data.Find(iFlavour => iFlavour.Flavour == flavour);
+		return m_Flavours.GetData(flavour);
 	}
 
 	private void _UpdateControlledFlavour()

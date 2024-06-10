@@ -11,7 +11,6 @@ public class JellyEntity : MonoBehaviour
 	private BoxCollider2D m_Collider2D;
 	private float m_LocalFootHeight = 0;
 	[SerializeField] private SpriteRenderer m_SpriteRenderer;
-	// [SerializeField] private Animator m_Animator;
 
 	[SerializeField] private Flavours m_Flavours;
 	private FlavourData m_CurrentFlavour;
@@ -170,12 +169,11 @@ public class JellyEntity : MonoBehaviour
 	private void _UpdateFlavour(Flavour iFlavour)
 	{
 		m_JellysManager.UnregisterJelly(this);
-		m_CurrentFlavour = m_Flavours.Data.Find(flavourData => flavourData.Flavour == iFlavour);
+		m_CurrentFlavour = m_Flavours.GetData(iFlavour);
 		m_JellysManager.RegisterJelly(this);
 		SetCanMove(m_JelliesController.GetCurrentControlledFlavour() == GetFlavour());
 
 		gameObject.layer = m_CurrentFlavour.Layer;
-		// m_SpriteRenderer.sprite = m_CurrentFlavour.Sprite;
 		m_SpriteRenderer.color = m_CurrentFlavour.Color;
 	}
 

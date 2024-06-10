@@ -10,6 +10,11 @@ public class EndTrigger : MonoBehaviour
 
 	public Action OnEndReached;
 
+	private void Start()
+	{
+
+	}
+
 	private void OnTriggerEnter2D(Collider2D iCollision)
 	{
 		if(m_HasBeenReached)
@@ -19,20 +24,19 @@ public class EndTrigger : MonoBehaviour
 		if(!iCollision.gameObject.TryGetComponent(out jelly))
 			return;
 
-		Vector3 jellyPos = jelly.transform.position;
-		Flavour jellyFlavour = jelly.GetFlavour();
 		m_FinalScore = Mathf.CeilToInt(jelly.GetVolume() * 100);
-		JellyEntity[] jellies = FindObjectsOfType<JellyEntity>();
-		foreach(JellyEntity otherJelly in jellies)
+		m_HasBeenReached = true;
+		Debug.Log($"End reached! Score: {m_FinalScore}");
+
+		WinMenuBehaviour m_WinMenu = FindFirstObjectByType<WinMenuBehaviour>(FindObjectsInactive.Include);
+		if(m_WinMenu == null)
 		{
-			otherJelly.SetFlavour(jellyFlavour);
-			jelly.Merge(otherJelly);
+			Debug.LogError("End menu not found.");
+			return;
 		}
 
-		jelly.transform.position = jellyPos;
-		m_HasBeenReached = true;
-
-		Debug.Log($"End reached! Score: {m_FinalScore}");
+		m_WinMenu.gameObject.SetActive(true);
+		m_WinMenu.SetScore(m_FinalScore);
 	}
 
 	public int GetScore()
