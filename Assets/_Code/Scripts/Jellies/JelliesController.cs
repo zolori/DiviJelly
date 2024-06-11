@@ -35,6 +35,18 @@ public class JelliesController : MonoBehaviour
 		m_InputMaster.InputAction.Jellys.Interact.performed += (ctx) => OnInteract();
 	}
 
+	private void OnDestroy()
+	{
+		if(m_JelliesManager != null)
+			m_JelliesManager.OnAvailableFlavourChange -= UpdateAvailableFlavours;
+		m_JelliesManager = null;
+
+		if(m_InputMaster == null)
+			return;
+
+		m_InputMaster.ResetInputAction();
+	}
+
 	public Flavour GetCurrentControlledFlavour()
 	{
 		return m_ControlledFlavour.Flavour;

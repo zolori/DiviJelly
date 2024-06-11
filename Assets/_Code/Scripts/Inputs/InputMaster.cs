@@ -52,12 +52,9 @@ public class InputMaster : Singleton<InputMaster>
 		if(Instance != this)
 			return;
 
-		DontDestroyOnLoad(gameObject);
-		inputAction = new InputsActions();
-		string overrideJson = PlayerPrefs.GetString(s_InputBindingPlayerPrefKey, "");
-		inputAction.LoadBindingOverridesFromJson(overrideJson);
+		DontDestroyOnLoad(gameObject); // need it because of "onAnyButtonPress" action that we can't unsubscribe
 
-		inputAction.Enable();
+		InitInputActions();
 
 		InputSystem.onDeviceChange += _RefreshControlSchemeFromDeviceChange;
 		InputSystem.onAnyButtonPress.Subscribe(new InputObserver(this));
@@ -104,6 +101,34 @@ public class InputMaster : Singleton<InputMaster>
 		OnControlSchemeChanged?.Invoke();
 	}
 
+	private void InitInputActions()
+	{
+		inputAction = new InputsActions();
+		string overrideJson = PlayerPrefs.GetString(s_InputBindingPlayerPrefKey, "");
+		inputAction.LoadBindingOverridesFromJson(overrideJson);
+		inputAction.Enable();
+	}
+
+	private void SaveInputActions()
+	{
+		if(inputAction == null)
+			return;
+
+		string overrideJson = inputAction.SaveBindingOverridesAsJson();
+		PlayerPrefs.SetString(s_InputBindingPlayerPrefKey, overrideJson);
+	}
+
+	public void ResetInputAction()
+	{
+		SaveInputActions();
+
+		OnControlSchemeChanged = null;
+		OnRebind = null;
+		inputAction.Dispose();
+
+		InitInputActions();
+	}
+
 	private void OnEnable()
 	{
 		inputAction.Enable();
@@ -124,10 +149,6 @@ public class InputMaster : Singleton<InputMaster>
 	{
 		base.OnDestroy();
 
-		if(inputAction == null)
-			return;
-
-		string overrideJson = inputAction.SaveBindingOverridesAsJson();
-		PlayerPrefs.SetString(s_InputBindingPlayerPrefKey, overrideJson);
+		SaveInputActions();
 	}
 }

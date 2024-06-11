@@ -40,4 +40,10 @@ public class CameraBehaviour : MonoBehaviour
 		float zoomDelta = Mathf.Abs(newZoom - m_Camera.orthographicSize);
 		m_Camera.orthographicSize = Mathf.MoveTowards(m_Camera.orthographicSize, newZoom, zoomDelta * m_DistanceSpeedCoef + m_MinSpeed);
 	}
+
+	private void OnDestroy()
+	{
+		m_JelliesManager = null;
+		m_JelliesController = null;
+	}
 }
