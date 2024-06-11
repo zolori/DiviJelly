@@ -58,4 +58,13 @@ public class JelliesManager : Singleton<JelliesManager>
 
 		return new Rect(minPos, maxPos - minPos);
 	}
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		m_Jellies.Clear();
+		m_Flavours.Clear();
+		OnAvailableFlavourChange = null;
+	}
 }

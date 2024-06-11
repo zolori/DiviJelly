@@ -310,6 +310,8 @@ public class JellyEntity : MonoBehaviour
 	private void OnDestroy()
 	{
 		m_JellysManager?.UnregisterJelly(this);
+		m_JellysManager = null;
+		m_JelliesController = null;
 	}
 
 	/////////////////////////////
