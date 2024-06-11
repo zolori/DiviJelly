@@ -10,11 +10,6 @@ public class EndTrigger : MonoBehaviour
 
 	public Action OnEndReached;
 
-	private void Start()
-	{
-
-	}
-
 	private void OnTriggerEnter2D(Collider2D iCollision)
 	{
 		if(m_HasBeenReached)

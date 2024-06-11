@@ -13,18 +13,19 @@ public class WinMenuBehaviour : MonoBehaviour
 	[Serializable]
 	struct ScoreStar
 	{
-		public float Score;
+		public int Score;
 		public Image Image;
 	}
 
 	[SerializeField] private List<ScoreStar> m_Stars = new List<ScoreStar>();
 	[SerializeField] private TextMeshProUGUI m_ScoreTxt;
-	private float m_Score = 0;
+	private int m_Score = 0;
 
-	public void SetScore(float iScore)
+	public void SetScore(int iScore)
 	{
 		m_Score = iScore;
-		m_ScoreTxt.text = Mathf.FloorToInt(m_Score).ToString();
+		LevelManager.Instance.SetCurrentLevelScore(iScore);
+		m_ScoreTxt.text = m_Score.ToString();
 		UpdateStars();
 	}
 
