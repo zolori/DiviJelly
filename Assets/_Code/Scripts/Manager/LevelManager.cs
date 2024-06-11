@@ -70,4 +70,9 @@ public class LevelManager : Singleton<LevelManager>
             _nextLevelScenePath = AssetDatabase.GetAssetPath(_nextLevel._currLevelScene);
         }
     }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

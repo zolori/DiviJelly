@@ -26,4 +26,9 @@ public class LevelUpdater : MonoBehaviour
 
         _levelManagerInstance.OpenNextLevel();
     }
+
+    public void RestartLevelUpdater()
+    {
+        _levelManagerInstance.RestartLevel();
+    }
 }
