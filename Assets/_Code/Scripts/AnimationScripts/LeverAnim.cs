@@ -27,19 +27,30 @@ public class LeverAnim : MonoBehaviour
 
     public void OnInteract()
     {
-        if (!_collided)
+        if (!_collided) {
+            Debug.Log($"collided : {_collided}");
             return;
+        }
 
         bool leverState = _animator.GetBool("bLever");
-
         _animator.SetTrigger(leverState ? "trLeft" : "trRight");
         _animator.SetBool("bLever", !leverState);
 
-        _movingPieceAnimator.SetTrigger("trOperate");
+        bool WallState = _movingPieceAnimator.GetBool("bOperate");
+        _movingPieceAnimator.SetTrigger(WallState ? "trDown" : "trUp");
+        _movingPieceAnimator.SetBool("bOperate", !WallState);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _collided = true;
+        Debug.Log($"collided : {_collided}");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _collided = false;
+        Debug.Log($"collided : {_collided}");
     }
 }

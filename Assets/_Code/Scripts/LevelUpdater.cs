@@ -13,22 +13,26 @@ public class LevelUpdater : MonoBehaviour
 
     public void InitAndLaunchLevelUpdater(LevelData level)
     {
-        if (_levelManagerInstance == null)
-            return;
-
-        _levelManagerInstance.InitAndLaunchLevel(level);
+        _levelManagerInstance?.InitAndLaunchLevel(level);
     }
 
     public void OpenNextLevelUpdater()
     {
-        if (_levelManagerInstance == null)
-            return;
-
-        _levelManagerInstance.OpenNextLevel();
+        _levelManagerInstance?.OpenNextLevel();
     }
 
     public void RestartLevelUpdater()
     {
         _levelManagerInstance.RestartLevel();
+    }
+
+    public void PauseLevelUpdater()
+    {
+        _levelManagerInstance?.PauseLevel();
+    }
+
+    public void ResumeLevelUpdater()
+    {
+        _levelManagerInstance?.ResumeLevel();
     }
 }

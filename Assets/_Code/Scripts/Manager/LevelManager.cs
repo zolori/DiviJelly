@@ -75,4 +75,14 @@ public class LevelManager : Singleton<LevelManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void PauseLevel()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void ResumeLevel()
+    {
+        Time.timeScale = 1.0f;
+    }
 }
