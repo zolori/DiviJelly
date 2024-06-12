@@ -11,6 +11,7 @@ public class JellyEntity : MonoBehaviour
 	private BoxCollider2D m_Collider2D;
 	private float m_LocalFootHeight = 0;
 	[SerializeField] private SpriteRenderer m_SpriteRenderer;
+	[SerializeField] private ParticleSystem m_Particles;
 
 	[SerializeField] private Flavours m_Flavours;
 	private FlavourData m_CurrentFlavour;
@@ -141,6 +142,9 @@ public class JellyEntity : MonoBehaviour
 				m_Rigidbody2D.velocity = Vector2.right * m_Rigidbody2D.velocity.x; // canceling vertical momentum
 				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_CurrentVolume, ForceMode2D.Impulse);
 				m_SfxPlayer.PlayOneShot(m_JumpSound);
+
+				m_Particles.Stop();
+				m_Particles.Play();
 			}
 		}
 	}
@@ -182,6 +186,8 @@ public class JellyEntity : MonoBehaviour
 
 		gameObject.layer = m_CurrentFlavour.Layer;
 		m_SpriteRenderer.color = m_CurrentFlavour.Color;
+		ParticleSystem.MainModule mainModule = m_Particles.main;
+		mainModule.startColor = m_CurrentFlavour.Color;
 	}
 
 	public Flavour GetFlavour()
@@ -196,6 +202,8 @@ public class JellyEntity : MonoBehaviour
 		transform.localScale = Vector3.one * volumeToScale;
 
 		m_Rigidbody2D.mass = m_CurrentVolume;
+		ParticleSystem.ShapeModule shapeModule = m_Particles.shape;
+		shapeModule.scale = volumeToScale * 0.8f * new Vector3(1, 0.8f, 1);
 	}
 
 	public float GetVolume()
@@ -230,6 +238,8 @@ public class JellyEntity : MonoBehaviour
 		newJellyEntity.m_AnimRigidbody2DsPos = m_AnimRigidbody2DsPos;
 		newJellyEntity.m_ResetPhysics = true;
 		m_SfxPlayer.PlayOneShot(m_SplitSound);
+		m_Particles.Stop();
+		m_Particles.Play();
 
 		return true;
 	}
@@ -246,6 +256,8 @@ public class JellyEntity : MonoBehaviour
 		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_CurrentVolume);
 		m_ResetPhysics = true;
 		m_SfxPlayer.PlayOneShot(m_MergeSound);
+		m_Particles.Stop();
+		m_Particles.Play();
 
 		Destroy(iOther.gameObject);
 	}
@@ -284,6 +296,8 @@ public class JellyEntity : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D iCollision)
 	{
 		m_SfxPlayer.PlayOneShot(m_BounceSound);
+		m_Particles.Stop();
+		m_Particles.Play();
 		if(_IsGroundCollision(iCollision))
 			m_Grounds.Add(iCollision.gameObject);
 	}
