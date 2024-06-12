@@ -7,8 +7,8 @@ public class LeverAnim : MonoBehaviour
     private Animator _animator;
     private InputMaster m_InputMaster;
 
-    public List<GameObject> movingPieces;
-    private List<Animator> _movingPieceAnimator;
+    public GameObject movingPiece;
+    private Animator _movingPieceAnimator;
 
     private bool _collided;
 
@@ -22,11 +22,7 @@ public class LeverAnim : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
-        foreach (var piece in movingPieces)
-        {
-            _movingPieceAnimator.Add(piece.GetComponent<Animator>());
-
-        }
+        _movingPieceAnimator = movingPiece.GetComponent<Animator>();
     }
 
     public void OnInteract()
