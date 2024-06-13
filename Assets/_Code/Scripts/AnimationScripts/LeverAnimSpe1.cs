@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverAnim : MonoBehaviour
+public class LeverAnimSpe1 : MonoBehaviour
 {
     private Animator _animator;
     private InputMaster m_InputMaster;
@@ -11,7 +11,6 @@ public class LeverAnim : MonoBehaviour
     private Animator _movingPieceAnimator;
 
     bool leverState = false;
-    bool PieceState = false;
 
     private bool _collided;
 
@@ -31,27 +30,27 @@ public class LeverAnim : MonoBehaviour
     public void OnInteract()
     {
         if (!_collided) {
-            Debug.Log($"pas collided");
+            Debug.Log($"collided : {_collided}");
             return;
         }
 
         _animator.SetTrigger(leverState ? "trOn" : "trOff");
         leverState = !leverState;
 
-        _movingPieceAnimator.SetTrigger(PieceState ? "trOff" : "trOn");
-        PieceState = !PieceState;
-
+        bool platformState = _movingPieceAnimator.GetBool("bState");
+        _movingPieceAnimator.SetTrigger(platformState ? "trOff" : "trOn");
+        _movingPieceAnimator.SetBool("bState", !platformState);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _collided = true;
-        Debug.Log($"je rentre dans la trigger zone : {_collided}");
+        Debug.Log($"collided : {_collided}");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         _collided = false;
-        Debug.Log($"je sors de la trigger zone : {_collided}");
+        Debug.Log($"collided : {_collided}");
     }
 }
