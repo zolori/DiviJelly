@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Tuto.unity
     guid: 74012964e454c694e86ea43d6be654a8
   - enabled: 1
-    path: Assets/_Scenes/Game.unity
-    guid: 615f2f8c63a6c8b469700a6b7daf6738
+    path: Assets/_Scenes/lvl2.unity
+    guid: 69deeb430b3b30c48828051cc7871a8f
+  - enabled: 1
+    path: Assets/_Scenes/LevelTom.unity
+    guid: b68a26cf685cf9d498d2a161064e10ed
   m_configObjects: {}

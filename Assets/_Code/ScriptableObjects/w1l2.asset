@@ -15,7 +15,5 @@ MonoBehaviour:
   _name: niveau 2 monde 1
   _world: 1
   _level: 2
-  _score: 0
-  _starCount: 0
-  _currLevelScene: {fileID: 102900000, guid: 615f2f8c63a6c8b469700a6b7daf6738, type: 3}
+  _currLevelScene: {fileID: 102900000, guid: 69deeb430b3b30c48828051cc7871a8f, type: 3}
   _nextLevelData: {fileID: 11400000, guid: f84a2b4d0b2452740be7ff5cb0a59453, type: 2}

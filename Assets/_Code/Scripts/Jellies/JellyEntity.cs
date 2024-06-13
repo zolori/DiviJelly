@@ -25,7 +25,7 @@ public class JellyEntity : MonoBehaviour
 	private bool m_CanMove = false;
 	private float m_MovementInputValue = 0;
 	private bool m_HasRequestedJump = false;
-	private HashSet<GameObject> m_Grounds = new HashSet<GameObject>();
+	private List<GameObject> m_Grounds = new List<GameObject>();
 
 	private float m_CurrentVolume = 1f;
 	[SerializeField] private float s_MinimalVolume = 0.1f;
@@ -50,13 +50,21 @@ public class JellyEntity : MonoBehaviour
 	[SerializeField] private AudioClip m_SplitSound;
 	[SerializeField] private AudioClip m_BounceSound;
 
+	private const float s_FootMargin = 0.01f;
+	private const float s_FootHeight = 0.01f;
+	private int m_LayerMask;
+	private const float s_MinForceCollisionSq = 16;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		m_Collider2D = GetComponent<BoxCollider2D>();
-		m_LocalFootHeight = m_Collider2D.offset.y - m_Collider2D.size.y * 0.5f;
+		m_LocalFootHeight = m_Collider2D.offset.y - m_Collider2D.size.y * 0.5f - m_Collider2D.edgeRadius;
 		m_JellysManager = JelliesManager.Instance;
 		m_JelliesController = FindFirstObjectByType<JelliesController>();
+		m_LayerMask = LayerMask.GetMask("Default");
+		foreach(FlavourData data in m_Flavours.Data)
+			m_LayerMask |= (1 << data.Layer);
 
 		FindAnimComponents();
 		if(m_AnimRigidbody2DsPos.Count == 0)
@@ -151,17 +159,33 @@ public class JellyEntity : MonoBehaviour
 
 	private bool _IsGrounded()
 	{
-		return m_Grounds.Count > 0;
+		Vector2 middleFoot = (Vector2)transform.position + Vector2.up * (m_LocalFootHeight - s_FootHeight * 0.5f - s_FootMargin);
+		float width = m_Collider2D.size.x * transform.localScale.x;
+
+		RaycastHit2D[] hits = Physics2D.BoxCastAll(middleFoot, new Vector2(width, s_FootHeight), 0, Vector2.down, 0.01f, m_LayerMask);
+		Debug.DrawRay(middleFoot + new Vector2(-width * 0.5f, s_FootHeight * 0.5f), Vector2.down * (s_FootHeight + 0.01f), Color.magenta);
+		Debug.DrawRay(middleFoot + new Vector2(width * 0.5f, s_FootHeight * 0.5f), Vector2.down * (s_FootHeight + 0.01f), Color.magenta);
+		Debug.DrawRay(middleFoot + new Vector2(-width * 0.5f, s_FootHeight * 0.5f), Vector2.right * width, Color.magenta);
+		Debug.DrawRay(middleFoot + new Vector2(-width * 0.5f, s_FootHeight * -0.5f - 0.01f), Vector2.right * width, Color.magenta);
+
+		foreach(RaycastHit2D hit in hits)
+		{
+			if(hit.collider == null)
+				continue;
+			if(hit.collider.isTrigger)
+				continue;
+			if((hit.collider.excludeLayers & (1 << gameObject.layer)) != 0)
+				continue;
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public void SetCanMove(bool iCanMove)
 	{
 		m_CanMove = iCanMove;
-		/*
-				if(m_CanMove)
-					m_Rigidbody2D.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-				else
-					m_Rigidbody2D.constraints |= RigidbodyConstraints2D.FreezePositionX;*/
 	}
 
 	public bool CanMove()
@@ -272,19 +296,6 @@ public class JellyEntity : MonoBehaviour
 		m_MovementInputValue = iVal;
 	}
 
-	private bool _IsGroundCollision(Collision2D iCollision)
-	{
-		List<ContactPoint2D> contacts = new List<ContactPoint2D>();
-		iCollision.GetContacts(contacts);
-		foreach(ContactPoint2D contact in contacts)
-		{
-			Vector2 localContactPoint = transform.worldToLocalMatrix.MultiplyPoint(contact.point);
-			if(Mathf.Abs(Vector2.Dot(contact.normal, Vector2.up)) >= 0.8f && Mathf.Abs(localContactPoint.y - m_LocalFootHeight) <= 0.1f)
-				return true;
-		}
-		return false;
-	}
-
 	private void _DebugCollision(Collision2D iCollision)
 	{
 		List<ContactPoint2D> contacts = new List<ContactPoint2D>();
@@ -295,11 +306,12 @@ public class JellyEntity : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D iCollision)
 	{
+		if(iCollision.relativeVelocity.sqrMagnitude < s_MinForceCollisionSq)
+			return;
+
 		m_SfxPlayer.PlayOneShot(m_BounceSound);
 		m_Particles.Stop();
 		m_Particles.Play();
-		if(_IsGroundCollision(iCollision))
-			m_Grounds.Add(iCollision.gameObject);
 	}
 
 	private void OnCollisionStay2D(Collision2D iCollision)
@@ -314,11 +326,6 @@ public class JellyEntity : MonoBehaviour
 
 		if(otherJelly.GetHashCode() < GetHashCode())
 			Merge(otherJelly);
-	}
-
-	private void OnCollisionExit2D(Collision2D iCollision)
-	{
-		m_Grounds.Remove(iCollision.gameObject);
 	}
 
 	private void OnDestroy()

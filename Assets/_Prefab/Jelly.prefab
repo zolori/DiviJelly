@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_MaxSpeed: 3
   m_DragForce: 2
   m_AirMultiplier: 0.05
-  m_JumpForce: 7
+  m_JumpForce: 9
   s_MinimalVolume: 0.063
   s_SplitHalfSpace: 1.5
   m_JellyPrefab: {fileID: 5050844128859526545}
