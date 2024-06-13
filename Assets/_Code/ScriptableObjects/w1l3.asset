@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de03dd71f921ff42ab7ba20065a73a4, type: 3}
   m_Name: w1l3
   m_EditorClassIdentifier: 
-  _name: map test
+  _name: World 1 Level 3
   _world: 1
   _level: 3
-  _score: 0
-  _starCount: 0
-  _currLevelScene: {fileID: 102900000, guid: 71a1608497bcabc46bddf1c1beeeabd1, type: 3}
+  _currLevelScene: {fileID: 102900000, guid: b68a26cf685cf9d498d2a161064e10ed, type: 3}
   _nextLevelData: {fileID: 0}

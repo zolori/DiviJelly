@@ -283,7 +283,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &5257221130733131512
 CircleCollider2D:
@@ -363,7 +363,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.16}
+  m_Size: {x: 0.31, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &2545144376029329082
 SpringJoint2D:
@@ -649,7 +649,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &2895142354383905821
 CircleCollider2D:
@@ -729,7 +729,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 0.16}
+  m_Size: {x: 0.26, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &3795846862559741044
 SpringJoint2D:
@@ -896,7 +896,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &3221699026940865195
 CircleCollider2D:
@@ -976,7 +976,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.16}
+  m_Size: {x: 0.31, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &3690111460164661537
 SpringJoint2D:
@@ -1101,7 +1101,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &8731339502397864489
 CircleCollider2D:
@@ -1181,7 +1181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &775872913399560655
 SpringJoint2D:
@@ -2223,7 +2223,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &7113875822110486885
 CircleCollider2D:
@@ -2303,7 +2303,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &911855122361815401
 SpringJoint2D:
@@ -2696,7 +2696,7 @@ GameObject:
   - component: {fileID: 3829704965812329560}
   - component: {fileID: 4209344498468480936}
   - component: {fileID: 7748521355259719659}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JellyAnimatedSprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3032,7 +3032,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &2186477726426812986
 CircleCollider2D:
@@ -3112,7 +3112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &864040369963441774
 SpringJoint2D:
@@ -3261,7 +3261,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &1255888918962426195
 CircleCollider2D:
@@ -3341,7 +3341,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &6086133070941892164
 SpringJoint2D:
@@ -3531,7 +3531,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &4518257930860449545
 CircleCollider2D:
@@ -3611,7 +3611,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.16, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &132950415710148591
 SpringJoint2D:
@@ -3960,7 +3960,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &3860631638436165127
 CircleCollider2D:
@@ -4040,7 +4040,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 0.16}
+  m_Size: {x: 0.26, y: 0.06}
   m_EdgeRadius: 0.02
 --- !u!231 &1298326307112823942
 SpringJoint2D:
