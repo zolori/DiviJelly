@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_SfxPlayer: {fileID: 6752525295588751727}
   m_JumpSound: {fileID: 8300000, guid: 31759862557f94142ad70df363172c50, type: 3}
   m_MergeSound: {fileID: 8300000, guid: e5b2b96ea214dab48951423c9382d61d, type: 3}
-  m_SplitSound: {fileID: 8300000, guid: 7be3258dca3ac844f94ff010bc201f57, type: 3}
+  m_SplitSound: {fileID: 8300000, guid: 42ea63c679805ea46a70897860e8ef92, type: 3}
   m_BounceSound: {fileID: 8300000, guid: 6d3baab628376b34b87b47a5ed0b31c7, type: 3}
 --- !u!82 &6752525295588751727
 AudioSource:
