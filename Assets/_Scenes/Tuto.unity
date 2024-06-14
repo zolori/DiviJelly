@@ -2103,7 +2103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3341508882748721984, guid: d4cc9c7b94fe8844fbe8a187aa77ddbd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9485033
+      value: 2.95
       objectReference: {fileID: 0}
     - target: {fileID: 3341508882748721984, guid: d4cc9c7b94fe8844fbe8a187aa77ddbd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2898,7 +2898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -99.7
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2941,6 +2941,14 @@ PrefabInstance:
       value: JellyWall
       objectReference: {fileID: 0}
     - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_Color.b
       value: 0.32156864
       objectReference: {fileID: 0}
@@ -2951,6 +2959,22 @@ PrefabInstance:
     - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_Color.r
       value: 0.9058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,10 +24,10 @@ public class JellyEntity : MonoBehaviour
 	private bool m_CanMove = false;
 	private float m_MovementInputValue = 0;
 	private bool m_HasRequestedJump = false;
-	private List<GameObject> m_Grounds = new List<GameObject>();
 
-	private float m_CurrentVolume = 1f;
-	[SerializeField] private float s_MinimalVolume = 0.1f;
+	private const float s_MaxVolume = 8f;
+	private int m_NbParts = 8;
+	private float m_Volume = 1f;
 	[SerializeField] private float s_SplitHalfSpace = 1.5f;
 
 	[SerializeField] private GameObject m_JellyPrefab;
@@ -106,7 +106,7 @@ public class JellyEntity : MonoBehaviour
 	private void Start()
 	{
 		_UpdateFlavour(m_CurrentFlavour.Flavour);
-		SetVolume(m_CurrentVolume);
+		SetVolume(m_NbParts);
 	}
 
 	private void FixedUpdate()
@@ -139,7 +139,7 @@ public class JellyEntity : MonoBehaviour
 			accelerationForce = 0;
 		float dragForce = (Mathf.Abs(xVelocity) * xVelocity + xVelocity) * -m_DragForce;
 
-		m_Rigidbody2D.AddForce(Vector2.right * ((accelerationForce + dragForce) * m_CurrentVolume * (isGrounded ? 1 : m_AirMultiplier)), ForceMode2D.Force);
+		m_Rigidbody2D.AddForce(Vector2.right * ((accelerationForce + dragForce) * m_Volume * (isGrounded ? 1 : m_AirMultiplier)), ForceMode2D.Force);
 
 		if(m_HasRequestedJump)
 		{
@@ -147,7 +147,7 @@ public class JellyEntity : MonoBehaviour
 			if(isGrounded)
 			{
 				m_Rigidbody2D.velocity = Vector2.right * m_Rigidbody2D.velocity.x; // canceling vertical momentum
-				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_CurrentVolume, ForceMode2D.Impulse);
+				m_Rigidbody2D.AddForce(Vector2.up * m_JumpForce * m_Volume, ForceMode2D.Impulse);
 				m_SfxPlayer.PlayOneShot(m_JumpSound);
 
 				m_Particles.Stop();
@@ -218,20 +218,22 @@ public class JellyEntity : MonoBehaviour
 		return m_CurrentFlavour.Flavour;
 	}
 
-	public void SetVolume(float iVolume)
+	public void SetVolume(int iVolume)
 	{
-		m_CurrentVolume = iVolume;
-		float volumeToScale = Mathf.Pow(m_CurrentVolume, 0.33333f);
+		m_NbParts = iVolume;
+		m_Volume = m_NbParts / s_MaxVolume;
+		Debug.Log($"{m_NbParts} -> {m_Volume}");
+		float volumeToScale = Mathf.Pow(m_Volume, 0.33333f);
 		transform.localScale = Vector3.one * volumeToScale;
 
-		m_Rigidbody2D.mass = m_CurrentVolume;
+		m_Rigidbody2D.mass = m_Volume;
 		ParticleSystem.ShapeModule shapeModule = m_Particles.shape;
 		shapeModule.scale = volumeToScale * 0.8f * new Vector3(1, 0.8f, 1);
 	}
 
 	public float GetVolume()
 	{
-		return m_CurrentVolume;
+		return m_Volume;
 	}
 
 	public Rect GetBBox()
@@ -243,14 +245,17 @@ public class JellyEntity : MonoBehaviour
 	[Button]
 	public bool Split()
 	{
-		if(m_CurrentVolume <= s_MinimalVolume * 2)
+		if(m_NbParts <= 1)
 			return false;
 
-		SetVolume(m_CurrentVolume * 0.5f);
+		int vol1 = m_NbParts / 2;
+		int vol2 = m_NbParts - vol1;
+
+		SetVolume(vol1);
 		GameObject newJellyObject = Instantiate(m_JellyPrefab, transform.position, transform.rotation, transform.parent);
 		JellyEntity newJellyEntity = newJellyObject.GetComponent<JellyEntity>();
 		newJellyEntity.SetFlavour(GetFlavour());
-		newJellyEntity.SetVolume(m_CurrentVolume);
+		newJellyEntity.SetVolume(vol2);
 		newJellyEntity.SetMovementInputValue(m_MovementInputValue);
 
 		Vector3 offset = (m_Collider2D.size.x * transform.localScale.x * 0.5f * s_SplitHalfSpace) * Vector3.right;
@@ -274,14 +279,15 @@ public class JellyEntity : MonoBehaviour
 		if(iOther == this)
 			return;
 
-		float prevVolume = m_CurrentVolume;
-		SetVolume(m_CurrentVolume + iOther.m_CurrentVolume);
-		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_CurrentVolume);
+		float prevVolume = m_NbParts;
+		SetVolume(m_NbParts + iOther.m_NbParts);
+		transform.position = Vector3.LerpUnclamped(iOther.transform.position, transform.position, prevVolume / m_NbParts);
 		m_ResetPhysics = true;
 		m_SfxPlayer.PlayOneShot(m_MergeSound);
 		m_Particles.Stop();
 		m_Particles.Play();
 
+		iOther.SetVolume(0);
 		Destroy(iOther.gameObject);
 	}
 

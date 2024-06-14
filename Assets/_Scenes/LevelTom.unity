@@ -3084,7 +3084,7 @@ SpriteRenderer:
   m_Size: {x: 49.84, y: 49.401955}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1235421634
@@ -3740,7 +3740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalScale.y
@@ -3789,6 +3789,18 @@ PrefabInstance:
     - target: {fileID: 4011602569555614442, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_Name
       value: JellyWall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5177,7 +5189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3374249322134375758, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5222,6 +5234,18 @@ PrefabInstance:
     - target: {fileID: 4011602569555614442, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
       propertyPath: m_Name
       value: JellyWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948543690584131337, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910098462822130463, guid: 32ec69a6d3db39b45a594d3f4140ff00, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
