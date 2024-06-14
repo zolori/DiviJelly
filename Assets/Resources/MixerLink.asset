@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de03dd71f921ff42ab7ba20065a73a4, type: 3}
-  m_Name: w1l2
+  m_Script: {fileID: 11500000, guid: daed168017b1560499433750445bb9d4, type: 3}
+  m_Name: MixerLink
   m_EditorClassIdentifier: 
-  _name: World 1 Level 2
-  _world: 1
-  _level: 2
-  _currLevelSceneIndex: 4
-  _nextLevelData: {fileID: 11400000, guid: f84a2b4d0b2452740be7ff5cb0a59453, type: 2}
+  Mixer: {fileID: 24100000, guid: f10103eb00b292e43b46bd43f0c9bbfd, type: 2}

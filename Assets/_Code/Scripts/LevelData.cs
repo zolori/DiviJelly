@@ -9,6 +9,6 @@ public class LevelData : ScriptableObject
 	public string _name;
 	public int _world;
 	public int _level;
-	public SceneAsset _currLevelScene;
+	public int _currLevelSceneIndex;
 	public LevelData _nextLevelData;
 }

@@ -1,7 +1,6 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]

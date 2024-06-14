@@ -15,5 +15,5 @@ MonoBehaviour:
   _name: World 1 Level 3
   _world: 1
   _level: 3
-  _currLevelScene: {fileID: 102900000, guid: b68a26cf685cf9d498d2a161064e10ed, type: 3}
+  _currLevelSceneIndex: 5
   _nextLevelData: {fileID: 0}

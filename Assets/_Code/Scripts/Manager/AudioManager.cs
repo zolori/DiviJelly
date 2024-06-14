@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -27,7 +26,9 @@ public class AudioManager : Singleton<AudioManager>
 
 		DontDestroyOnLoad(gameObject);
 
-		m_Mixer = AssetDatabase.LoadAssetAtPath<AudioMixer>("Assets/_Audio/MasterMixer.mixer");
+
+		m_Mixer = Resources.Load<MixerLink>("MixerLink").Mixer;
+		// m_Mixer = AssetDatabase.LoadAssetAtPath<AudioMixer>("Assets/_Audio/MasterMixer.mixer");
 		AudioMixerGroup musicMixerGroup = GetMixerGroup(m_Mixer, s_MusicKey);
 		AudioMixerGroup sfxMixerGroup = GetMixerGroup(m_Mixer, s_SFXKey);
 

@@ -8,8 +8,8 @@ public class LevelManager : Singleton<LevelManager>
 {
 	private LevelData _currLevel;
 	private LevelData _nextLevel;
-	private string _currLevelScenePath;
-	private string _nextLevelScenePath;
+	private int _currLevelSceneIndex = -1;
+	private int _nextLevelSceneIndex = -1;
 
 	private ScoreRW m_ScoreIO;
 
@@ -44,7 +44,7 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void OpenLevel(LevelData levelData)
 	{
-		SceneManager.LoadScene(_currLevelScenePath);
+		SceneManager.LoadScene(_currLevelSceneIndex);
 	}
 
 	public void OpenNextLevel()
@@ -53,9 +53,9 @@ public class LevelManager : Singleton<LevelManager>
 
 		if(_nextLevel != null)
 		{
-			if(_nextLevelScenePath != null)
+			if(_nextLevelSceneIndex >= 0)
 			{
-				SceneManager.LoadScene(_nextLevelScenePath);
+				SceneManager.LoadScene(_nextLevelSceneIndex);
 			}
 		}
 		else
@@ -67,16 +67,16 @@ public class LevelManager : Singleton<LevelManager>
 	public void SetCurrentLevel(LevelData level)
 	{
 		_currLevel = level;
-		_currLevelScenePath = AssetDatabase.GetAssetPath(_currLevel._currLevelScene);
+		_currLevelSceneIndex = _currLevel._currLevelSceneIndex;
 	}
 
 	public void SetNextLevel(LevelData level)
 	{
-		if(level != null)
-		{
-			_nextLevel = level;
-			_nextLevelScenePath = AssetDatabase.GetAssetPath(_nextLevel._currLevelScene);
-		}
+		_nextLevel = level;
+		if(_nextLevel != null)
+			_nextLevelSceneIndex = _nextLevel._currLevelSceneIndex;
+		else
+			_nextLevelSceneIndex = -1;
 	}
 
 	public void RestartLevel()
