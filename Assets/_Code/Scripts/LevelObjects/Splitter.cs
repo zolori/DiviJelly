@@ -10,6 +10,7 @@ public class Splitter : MonoBehaviour
 	[SerializeField] private int m_NbActivationLimit = 1;
 
 	[SerializeField] private float m_RecoveryTime = 1f;
+	[SerializeField] private Animator m_Animator;
 
 	private List<JellyEntity> m_CollidedJellies = new List<JellyEntity>();
 
@@ -35,7 +36,10 @@ public class Splitter : MonoBehaviour
 				continue;
 
 			if(jelly.Split())
+			{
 				hasSplit = true;
+				m_Animator.SetTrigger("Play");
+			}
 		}
 
 		if(hasSplit)
