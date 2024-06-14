@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class CameraBehaviour : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class CameraBehaviour : MonoBehaviour
 	private JelliesController m_JelliesController;
 	private JelliesManager m_JelliesManager;
 
+	private List<Vector2> m_TargetPoints = new List<Vector2>();
+
 	private void Awake()
 	{
 		m_Camera = Camera.main;
@@ -22,12 +25,23 @@ public class CameraBehaviour : MonoBehaviour
 		m_InvTargetBBoxSize = new Vector2(1 / m_TargetBBoxSize.x, 1 / m_TargetBBoxSize.y);
 	}
 
-	void FixedUpdate()
+	private void FixedUpdate()
 	{
 		if(m_JelliesController == null || m_JelliesManager == null)
 			return;
 
 		Rect bBox = m_JelliesManager.GetBBoxForFlavour(m_JelliesController.GetCurrentControlledFlavour());
+		Vector2 minPos = bBox.min;
+		Vector2 maxPos = bBox.max;
+		foreach(Vector2 targetPoint in m_TargetPoints)
+		{
+			minPos.x = Mathf.Min(minPos.x, targetPoint.x);
+			maxPos.x = Mathf.Max(maxPos.x, targetPoint.x);
+			minPos.y = Mathf.Min(minPos.y, targetPoint.y);
+			maxPos.y = Mathf.Max(maxPos.y, targetPoint.y);
+		}
+		bBox.min = minPos;
+		bBox.max = maxPos;
 
 		Vector3 newPos = bBox.center;
 		newPos.z = transform.position.z;
@@ -39,6 +53,16 @@ public class CameraBehaviour : MonoBehaviour
 		float newZoom = Mathf.Max(m_MinZoom, Mathf.Max(targetCamWidth / m_Camera.aspect, targetCamHeight)) * 0.5f;
 		float zoomDelta = Mathf.Abs(newZoom - m_Camera.orthographicSize);
 		m_Camera.orthographicSize = Mathf.MoveTowards(m_Camera.orthographicSize, newZoom, zoomDelta * m_DistanceSpeedCoef + m_MinSpeed);
+	}
+
+	public void AddTargetPoint(Vector2 iTargetPoint)
+	{
+		m_TargetPoints.Add(iTargetPoint);
+	}
+
+	public void RemoveTargetPoint(Vector2 iTargetPoint)
+	{
+		m_TargetPoints.Remove(iTargetPoint);
 	}
 
 	private void OnDestroy()
