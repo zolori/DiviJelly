@@ -222,7 +222,7 @@ public class JellyEntity : MonoBehaviour
 	{
 		m_NbParts = iVolume;
 		m_Volume = m_NbParts / s_MaxVolume;
-		Debug.Log($"{m_NbParts} -> {m_Volume}");
+
 		float volumeToScale = Mathf.Pow(m_Volume, 0.33333f);
 		transform.localScale = Vector3.one * volumeToScale;
 

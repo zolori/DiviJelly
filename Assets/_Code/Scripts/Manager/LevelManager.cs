@@ -49,19 +49,10 @@ public class LevelManager : Singleton<LevelManager>
 
 	public void OpenNextLevel()
 	{
-		InitAndLaunchLevel(_nextLevel);
-
 		if(_nextLevel != null)
-		{
-			if(_nextLevelSceneIndex >= 0)
-			{
-				SceneManager.LoadScene(_nextLevelSceneIndex);
-			}
-		}
+			InitAndLaunchLevel(_nextLevel);
 		else
-		{
 			SceneManager.LoadScene(1);
-		}
 	}
 
 	public void SetCurrentLevel(LevelData level)
