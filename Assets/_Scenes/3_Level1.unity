@@ -3658,11 +3658,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1577405297}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetSelectedGameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.EventSystems.EventSystem, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1634109052}
+    - target: {fileID: 7967083333074442522, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+--- !u!1 &1634109052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7514452871908575425, guid: 2cad8c3d2d1ac29458182d7f4a8258d1, type: 3}
+  m_PrefabInstance: {fileID: 1634109051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1705259797
 GameObject:
   m_ObjectHideFlags: 0
