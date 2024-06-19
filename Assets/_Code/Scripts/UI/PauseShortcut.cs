@@ -8,20 +8,23 @@ using UnityEngine.UI;
 public class PauseShortcut : MonoBehaviour
 {
 	private Button m_Button;
+	private InputMaster m_InputMaster;
 
 	void Start()
 	{
 		m_Button = GetComponent<Button>();
+		m_InputMaster = InputMaster.Instance;
 	}
 
 	private void OnEnable()
 	{
-		InputMaster.Instance.InputAction.Jellys.Pause.performed += Shortcut;
+		m_InputMaster.InputAction.Jellys.Pause.performed += Shortcut;
 	}
 
 	private void OnDisable()
 	{
-		InputMaster.Instance.InputAction.Jellys.Pause.performed -= Shortcut;
+		if(m_InputMaster != null)
+			m_InputMaster.InputAction.Jellys.Pause.performed -= Shortcut;
 	}
 
 	private void Shortcut(InputAction.CallbackContext _)

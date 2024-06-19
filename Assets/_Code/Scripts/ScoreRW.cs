@@ -55,7 +55,7 @@ public class ScoreRW
 		for(int levelIdx = worldScores.Count; levelIdx <= iLevelIdx; levelIdx++)
 			worldScores.Add(-1);
 
-		worldScores[iLevelIdx] = iScore;
+		worldScores[iLevelIdx] = Math.Max(worldScores[iLevelIdx], iScore);
 	}
 
 	public void WriteScores()
