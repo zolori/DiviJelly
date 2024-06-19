@@ -159,7 +159,7 @@ public class JellyEntity : MonoBehaviour
 	private bool _IsGrounded()
 	{
 		Vector2 middleFoot = (Vector2)transform.position + Vector2.up * (m_LocalFootHeight - s_FootHeight * 0.5f - s_FootMargin);
-		float width = m_Collider2D.size.x * transform.localScale.x;
+		float width = (m_Collider2D.size.x + m_Collider2D.edgeRadius) * transform.localScale.x;
 
 		RaycastHit2D[] hits = Physics2D.BoxCastAll(middleFoot, new Vector2(width, s_FootHeight), 0, Vector2.down, 0.01f, m_LayerMask);
 		Debug.DrawRay(middleFoot + new Vector2(-width * 0.5f, s_FootHeight * 0.5f), Vector2.down * (s_FootHeight + 0.01f), Color.magenta);
