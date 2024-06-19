@@ -202,34 +202,6 @@ PrefabInstance:
       propertyPath: movingPiece
       value: 
       objectReference: {fileID: 1197714948}
-    - target: {fileID: 2247503296003112001, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247503296003112001, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247503296003112001, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4473657893745811948, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.575976
-      objectReference: {fileID: 0}
-    - target: {fileID: 4473657893745811948, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5919199
-      objectReference: {fileID: 0}
-    - target: {fileID: 4473657893745811948, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5919199
-      objectReference: {fileID: 0}
-    - target: {fileID: 4473657893745811948, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 4687553123102348862, guid: 68cba6c06f3edd44691498bfd1f35099, type: 3}
       propertyPath: m_Name
       value: Lever
