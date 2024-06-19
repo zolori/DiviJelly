@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -174,6 +175,10 @@ public class JellyEntity : MonoBehaviour
 			if(hit.collider.isTrigger)
 				continue;
 			if((hit.collider.excludeLayers & (1 << gameObject.layer)) != 0)
+				continue;
+
+			JellyEntity underJelly = hit.collider.gameObject.GetComponent<JellyEntity>();
+			if(underJelly != null && !underJelly._IsGrounded())
 				continue;
 
 			return true;
