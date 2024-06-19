@@ -10,7 +10,7 @@ public class PauseShortcut : MonoBehaviour
 	private Button m_Button;
 	private InputMaster m_InputMaster;
 
-	void Start()
+	private void Awake()
 	{
 		m_Button = GetComponent<Button>();
 		m_InputMaster = InputMaster.Instance;
