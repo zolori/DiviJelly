@@ -4369,50 +4369,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 279777119}
     m_Modifications:
-    - target: {fileID: 2875287467645316878, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0276d0c2a9e199e4d8f86d01040f2ad1, type: 3}
-    - target: {fileID: 2875287467645316878, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_Color.a
-      value: 0.43137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 2875287467645316878, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_Color.b
-      value: 0.3018868
-      objectReference: {fileID: 0}
-    - target: {fileID: 2875287467645316878, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_Color.g
-      value: 0.3018868
-      objectReference: {fileID: 0}
-    - target: {fileID: 2875287467645316878, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3018868
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.w
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.x
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.y
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.z
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356499712955081536, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6091115131296495829, guid: 951b9a779a7d1ed4790d741ac47d8fcc, type: 3}
       propertyPath: m_Name
       value: Splitter
