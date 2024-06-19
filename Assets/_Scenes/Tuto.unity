@@ -4869,6 +4869,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 610973162}
     m_Modifications:
+    - target: {fileID: 1441393834378184693, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
+      propertyPath: m_fontSize
+      value: 22.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441393834378184693, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441393834378184693, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441393834378184693, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441393834378184693, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7143957516037009758, guid: 64aa97bd0a808ca4c88804f663aca68a, type: 3}
       propertyPath: m_Name
       value: Interact
