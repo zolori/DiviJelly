@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -7,14 +8,16 @@ public class CameraTrigger : MonoBehaviour
 {
 	[SerializeField] private Flavours m_Flavours;
 
-	private List<GameObject> m_Jellies = new List<GameObject>();
+	private List<JellyEntity> m_Jellies = new List<JellyEntity>();
 
 	private CameraBehaviour m_Camera;
+	private JelliesController m_JelliesController;
 	bool m_IsActive = false;
 
 	private void Start()
 	{
 		m_Camera = Camera.main.GetComponent<CameraBehaviour>();
+		m_JelliesController = FindAnyObjectByType<JelliesController>();
 		if(m_Camera == null)
 		{
 			Debug.LogWarning("No camera behaviour");
@@ -31,7 +34,8 @@ public class CameraTrigger : MonoBehaviour
 		{
 			// cleaning list
 			m_Jellies.RemoveAll(jelly => jelly == null);
-			if(m_Jellies.Count > 0)
+			bool shouldActivate = m_Jellies.Count(jelly => jelly.GetFlavour() == m_JelliesController.GetCurrentControlledFlavour()) > 0;
+			if(shouldActivate)
 			{
 				if(!m_IsActive)
 				{
@@ -54,12 +58,15 @@ public class CameraTrigger : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D iCollision)
 	{
-		if(iCollision.GetComponent<JellyEntity>())
-			m_Jellies.Add(iCollision.gameObject);
+		JellyEntity jelly = iCollision.GetComponent<JellyEntity>();
+		if(jelly)
+			m_Jellies.Add(jelly);
 	}
 
 	private void OnTriggerExit2D(Collider2D iCollision)
 	{
-		m_Jellies.Remove(iCollision.gameObject);
+		JellyEntity jelly = iCollision.GetComponent<JellyEntity>();
+		if(jelly)
+			m_Jellies.Remove(jelly);
 	}
 }
