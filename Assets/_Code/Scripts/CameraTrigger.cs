@@ -7,10 +7,10 @@ public class CameraTrigger : MonoBehaviour
 {
 	[SerializeField] private Flavours m_Flavours;
 
-	private CameraBehaviour m_Camera;
+	private List<GameObject> m_Jellies = new List<GameObject>();
 
-	private bool m_IsActive = false;
-	private bool m_RequestActive = false;
+	private CameraBehaviour m_Camera;
+	bool m_IsActive = false;
 
 	private void Start()
 	{
@@ -29,7 +29,9 @@ public class CameraTrigger : MonoBehaviour
 		var delay = new WaitForSeconds(0.1f);
 		while(true)
 		{
-			if(m_RequestActive)
+			// cleaning list
+			m_Jellies.RemoveAll(jelly => jelly == null);
+			if(m_Jellies.Count > 0)
 			{
 				if(!m_IsActive)
 				{
@@ -45,14 +47,19 @@ public class CameraTrigger : MonoBehaviour
 					m_Camera.RemoveTargetPoint(transform.position);
 				}
 			}
-			m_RequestActive = false;
 
 			yield return delay;
 		}
 	}
 
-	private void OnTriggerStay2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D iCollision)
 	{
-		m_RequestActive = true;
+		if(iCollision.GetComponent<JellyEntity>())
+			m_Jellies.Add(iCollision.gameObject);
+	}
+
+	private void OnTriggerExit2D(Collider2D iCollision)
+	{
+		m_Jellies.Remove(iCollision.gameObject);
 	}
 }
