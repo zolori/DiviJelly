@@ -652,10 +652,6 @@ PrefabInstance:
       value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
@@ -1139,10 +1135,6 @@ PrefabInstance:
       value: Level6
       objectReference: {fileID: 0}
     - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
@@ -1281,10 +1273,6 @@ PrefabInstance:
     - target: {fileID: 831863594858963812, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_Name
       value: Level2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
-      propertyPath: m_Interactable
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1471,10 +1459,6 @@ PrefabInstance:
     - target: {fileID: 831863594858963812, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_Name
       value: Level5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
-      propertyPath: m_Interactable
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2638962814179407504, guid: 7ad4c24e2789dd84598ee2afa22170ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

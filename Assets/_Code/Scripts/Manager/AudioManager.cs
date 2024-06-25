@@ -28,7 +28,6 @@ public class AudioManager : Singleton<AudioManager>
 
 
 		m_Mixer = Resources.Load<MixerLink>("MixerLink").Mixer;
-		// m_Mixer = AssetDatabase.LoadAssetAtPath<AudioMixer>("Assets/_Audio/MasterMixer.mixer");
 		AudioMixerGroup musicMixerGroup = GetMixerGroup(m_Mixer, s_MusicKey);
 		AudioMixerGroup sfxMixerGroup = GetMixerGroup(m_Mixer, s_SFXKey);
 
